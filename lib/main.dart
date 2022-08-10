@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'buku.dart';
+import 'services.dart';
+import 'widgets/card_buku.dart';
+import 'screenpage/home.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -19,23 +24,4 @@ class MyApp extends StatelessWidget {
       home: const Home(title: 'Perpustakaan'),
     );
   }
-}
-
-class Home extends StatefulWidget {
-  const Home({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<Home> createState() => _Home();
-}
-
-class _Home extends State<Home> {
-  @override
-  Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return Scaffold(
-      
-    );
-  } 
 }
