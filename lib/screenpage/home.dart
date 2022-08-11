@@ -3,6 +3,7 @@ import 'package:perpuskemenkeu/widgets/card_buku.dart';
 import 'package:dio/dio.dart';
 import 'package:perpuskemenkeu/services.dart';
 import 'package:perpuskemenkeu/buku.dart';
+import 'package:perpuskemenkeu/widgets/card_buku2.dart';
 
 
 class Home extends StatefulWidget {
@@ -43,13 +44,13 @@ class _Home extends State<Home> {
       ),
       body: loading ? Center(child: CircularProgressIndicator(),) : listBuku != null ?
       ListView.builder(
+        scrollDirection: Axis.horizontal,
         itemCount: listBuku!.length,
         itemBuilder: (context, int index){
-          return Column(
-            children: [
-              CardBuku(bukuTerbaru: listBuku![index])
-            ],
-          );
+          return InkWell(child: BukuCard(bukuTerbaru: listBuku![index]),
+          onTap: (){
+            print('${listBuku![index].id}');
+          } ,);
         },
       ) : Center(child: Text('no data'),),
       bottomNavigationBar: BottomNavigationBar(

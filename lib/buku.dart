@@ -1,8 +1,8 @@
 class BukuTerbaru {
   int? id;
-  String? judulbuku;
+  String? judulBuku;
   String? fileCover;
-  DateTime? createdDate;
+  String? createdDate;
   String? namaPengarang;
   String? namaPenerbit;
   dynamic jumlah;
@@ -10,12 +10,13 @@ class BukuTerbaru {
   String? lokasi;
 
   BukuTerbaru({
-    required this.judulbuku, required this.fileCover, required this.createdDate, 
+    required this.judulBuku, required this.fileCover, required this.createdDate, 
     required this.namaPengarang, required this.namaPenerbit, required this.jumlah,
     required this.lokasiRak, required this.lokasi});
   
   BukuTerbaru.fromJson(Map<String, dynamic> json){
-    id = json['id'];
+    id = json['Id'];
+    judulBuku = json['JudulBuku'];
     fileCover = json['FileCover'];
     createdDate = json['CreatedDate'];
     namaPengarang = json['NamaPengarang'];

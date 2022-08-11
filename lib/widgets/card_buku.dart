@@ -55,7 +55,7 @@ class CardBuku extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 160,
+            bottom: 5,
             child: Container(
               height: 85,
               width: 202,
@@ -70,7 +70,7 @@ class CardBuku extends StatelessWidget {
                         style: TextStyle(color: Color.fromARGB(1, 2, 3, 4)),
                         children: [
                           TextSpan(
-                            text: "${bukuTerbaru.judulbuku}",
+                            text: "${bukuTerbaru.judulBuku}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
