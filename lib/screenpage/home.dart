@@ -17,6 +17,7 @@ class Home extends StatefulWidget {
 class _Home extends State<Home> {
   List<BukuTerbaru>? listBuku;
   bool loading = false;
+  int currentIndex = 0;
 
   @override
   void initState() {
@@ -50,7 +51,21 @@ class _Home extends State<Home> {
             ],
           );
         },
-      ) : Center(child: Text('no data'),)
+      ) : Center(child: Text('no data'),),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: currentIndex,
+        onTap: (index) => setState(() => currentIndex = index),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Beranda',
+            ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            label: 'Katalog')
+        ],
+      ),
 
 
     );

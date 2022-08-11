@@ -36,7 +36,7 @@ class CardBuku extends StatelessWidget {
             ),
           ),
           Image(
-            image: NetworkImage('${bukuTerbaru.fileCover}'),
+            image: NetworkImage('https://perpustakaan.kemenkeu.go.id/img/FileCover/${bukuTerbaru.fileCover}'),
             width: 150,
             height: 150,
           ),
