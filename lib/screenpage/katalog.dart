@@ -39,7 +39,7 @@ class _Katalog extends State<Katalog> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('testing'),
+        title: Text('Perpustakaan'),
       ),
       body: loading
           ? Center(
