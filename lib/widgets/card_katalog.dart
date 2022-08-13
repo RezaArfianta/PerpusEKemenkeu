@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:perpuskemenkeu/buku.dart';
+import 'package:perpuskemenkeu/katalogmodel.dart';
 
-class BukuCard extends StatelessWidget {
-  const BukuCard({Key? key, required this.bukuTerbaru}) : super(key: key);
-  final BukuTerbaru bukuTerbaru;
+class KatalogCard extends StatelessWidget {
+  const KatalogCard({Key? key, required this.iniKatalog}) : super(key: key);
+  final Catalogue iniKatalog;
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +23,8 @@ class BukuCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Image(
-            image: NetworkImage(
-                'https://perpustakaan.kemenkeu.go.id/img/FileCover/${bukuTerbaru.fileCover}'),
-            width: 150,
-            height: 150,
-          ),
           Text(
-            '${bukuTerbaru.judulBuku}',
+            '${iniKatalog.judulbuku}',
             maxLines: 2,
           )
         ],

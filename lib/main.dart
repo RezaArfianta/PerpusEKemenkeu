@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:perpuskemenkeu/screenpage/katalog.dart';
 import 'buku.dart';
 import 'services.dart';
 import 'widgets/card_buku.dart';
 import 'screenpage/home.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Home(title: 'Perpustakaan'),
+      home: const Katalog(title: 'Perpustakaan'),
     );
   }
 }
