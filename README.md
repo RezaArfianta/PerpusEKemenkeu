@@ -1,6 +1,6 @@
-# perpuskemenkeu
+# PerpusKemenkeu
 
-A new Flutter project.
+app source code inside the lib folder
 
 ## Getting Started
 
