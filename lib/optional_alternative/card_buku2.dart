@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:perpuskemenkeu/buku.dart';
+import 'package:perpuskemenkeu/models/buku.dart';
 import 'package:dio/dio.dart';
 
 class BukuCard extends StatelessWidget {

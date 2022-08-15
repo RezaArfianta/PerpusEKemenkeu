@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:perpuskemenkeu/buku.dart';
+import 'package:perpuskemenkeu/models/buku.dart';
 
 class CardBuku extends StatelessWidget {
   const CardBuku({Key? key, required this.bukuTerbaru}) : super(key: key);

@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:perpuskemenkeu/widgets/card_buku.dart';
 import 'package:dio/dio.dart';
 import 'package:perpuskemenkeu/services.dart';
-import 'package:perpuskemenkeu/buku.dart';
+import 'package:perpuskemenkeu/models/buku.dart';
 import 'package:perpuskemenkeu/optional_alternative/card_buku2.dart';
 
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:perpuskemenkeu/katalogmodel.dart';
+import 'package:perpuskemenkeu/models/katalogmodel.dart';
 
 class KatalogCard extends StatelessWidget {
   const KatalogCard({Key? key, required this.iniKatalog}) : super(key: key);

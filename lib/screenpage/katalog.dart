@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:perpuskemenkeu/widgets/card_katalog.dart';
 import 'package:dio/dio.dart';
-import 'package:perpuskemenkeu/serviceskatalog.dart';
-import 'package:perpuskemenkeu/katalogmodel.dart';
+import 'package:perpuskemenkeu/models/katalogmodel.dart';
+import 'package:perpuskemenkeu/services.dart';
+
 
 class Katalog extends StatefulWidget {
   const Katalog({Key? key, required this.title}) : super(key: key);
@@ -28,7 +31,7 @@ class _Katalog extends State<Katalog> {
     setState(() {
       loading = true;
     });
-    listKatalog = await ServicesK.getListCatalogue();
+    listKatalog = await Services.getListCatalogue();
     setState(() {
       loading = false;
     });
