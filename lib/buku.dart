@@ -26,3 +26,7 @@ class BukuTerbaru {
     lokasi = json['Lokasi'];
   }
 }
+
+class BukuTerlaris {
+  
+}

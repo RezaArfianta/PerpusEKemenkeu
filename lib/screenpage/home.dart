@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:perpuskemenkeu/widgets/card_buku.dart';
 import 'package:dio/dio.dart';
 import 'package:perpuskemenkeu/services.dart';
 import 'package:perpuskemenkeu/buku.dart';
-import 'package:perpuskemenkeu/widgets/card_buku2.dart';
+import 'package:perpuskemenkeu/optional_alternative/card_buku2.dart';
 
 
 class Home extends StatefulWidget {
@@ -40,19 +41,50 @@ class _Home extends State<Home> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('testing'),
+        title: Text('Beranda'),
       ),
       body: loading ? Center(child: CircularProgressIndicator(),) : listBuku != null ?
-      ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: listBuku!.length,
-        itemBuilder: (context, int index){
-          return InkWell(child: BukuCard(bukuTerbaru: listBuku![index]),
-          onTap: (){
-            print('${listBuku![index].id}');
-          } ,);
-        },
+      Container(
+        child: ListView(
+          children: <Widget>[
+            SizedBox(height: 20,
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 15),       
+              height: 40,
+              child: Text('Buku Terbaru', 
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.left,),
+            ),
+            Container(
+            height: 360,
+            child: ListView.separated(
+              padding: EdgeInsets.all(10),         
+              scrollDirection: Axis.horizontal,
+              itemCount: listBuku!.length,
+              separatorBuilder: (context, _) => SizedBox(width: 12,),
+              itemBuilder: (context, int index){
+                return InkWell(child: CardBuku(bukuTerbaru : listBuku![index]),
+                onTap: (){
+                  print('ada');
+                  showDialog(
+                    context: context, builder: (context) => AlertDialog(
+                      title: Text('Angkasa'),
+                      content: Text('Angkasa lalala'),
+                      actions: [
+                        TextButton(onPressed: (){
+                          Navigator.pop(context);
+                        }, child: Text('Close'))
+                      ],
+                    ));
+                  } ,);
+                },
+              ),
+            ),
+          ]
+        ),
       ) : Center(child: Text('no data'),),
+
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,

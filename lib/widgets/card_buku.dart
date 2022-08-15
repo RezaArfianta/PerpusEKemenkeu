@@ -2,88 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:perpuskemenkeu/buku.dart';
 
 class CardBuku extends StatelessWidget {
-
-  final BukuTerbaru bukuTerbaru;
-
   const CardBuku({Key? key, required this.bukuTerbaru}) : super(key: key);
-
+  final BukuTerbaru bukuTerbaru;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 24, bottom: 40),
-      height: 245,
-      width: 202,
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: 221,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(29),
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 10),
-                    blurRadius: 33,
-                    color: Color.fromARGB(10, 120, 12, 104),
-                  ),
-                ],
-              ),
-            ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(3, 3),
+            spreadRadius: 3,
+            blurRadius: 5,
+            color: Colors.grey.withOpacity(0.5),
           ),
-          Image(
-            image: NetworkImage('https://perpustakaan.kemenkeu.go.id/img/FileCover/${bukuTerbaru.fileCover}'),
-            width: 150,
-            height: 150,
-          ),
-          Positioned(
-            top: 35,
-            right: 10,
+        ],
+      ),
+      
+      child: Column(
+        children: <Widget> [
+          Container(
+            width: 180,
             child: Column(
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.favorite_border,
+              children: [
+                ClipRRect(borderRadius: 
+                BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                  child: Image(
+                    image: NetworkImage(
+                        'https://perpustakaan.kemenkeu.go.id/img/FileCover/${bukuTerbaru.fileCover}'
+                        // 'https://picsum.photos/200/300'
+                        ),
+                    fit: BoxFit.cover,
                   ),
-                  onPressed: () {},
                 ),
               ],
             ),
           ),
-          Positioned(
-            bottom: 5,
-            child: Container(
-              height: 85,
-              width: 202,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(left: 24),
-                    child: RichText(
-                      maxLines: 2,
-                      text: TextSpan(
-                        style: TextStyle(color: Color.fromARGB(1, 2, 3, 4)),
-                        children: [
-                          TextSpan(
-                            text: "${bukuTerbaru.judulBuku}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Spacer(),
-                ],
-              ),
-            ),
-          ),
+          SizedBox(height: 10,),
+          Text(
+            '${bukuTerbaru.judulBuku}',
+            // 'Angkasa',
+            style: TextStyle(fontSize: 15),
+          ),        
         ],
       ),
     );
