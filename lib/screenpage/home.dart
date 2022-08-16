@@ -89,7 +89,7 @@ class _Home extends State<Home> {
               margin: EdgeInsets.only(left: 15),       
               height: 40,
               child: Text('Buku Terlaris', 
-                style: TextStyle(fontSize: 20,),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.left,),
             ),
             Container(
