@@ -7,45 +7,41 @@ class KatalogCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Row(
-        children: [
-          Container(
-              width: 400,
-              padding: const EdgeInsets.all(5.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Align(
-                      alignment: Alignment.centerLeft,
-                      child: Container(
-                          child: Column(
-                        children: [
-                          Text(
-                            '${iniKatalog.judulbuku}',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.left,
-                          ),
-                          Text('${iniKatalog.abstrak}'),
-                        ],
-                      ))),
-                  Row(
-                      // crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Icon(
-                          Icons.location_on,
-                          size: 20,
-                        ),
-                        Expanded(child: Text('${iniKatalog.lokasi}')),
-                        Icon(
-                          Icons.info,
-                          size: 20,
-                        ),
-                      ]),
-                ],
-              ))
-        ],
+    return Container(
+      padding: EdgeInsets.fromLTRB(14, 4, 14, 4),
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        elevation: 16,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Container(
+            width: 400,
+            padding: const EdgeInsets.all(25),
+            child: Column(
+              children: [
+                Container(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${iniKatalog.judulbuku}',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text('${iniKatalog.abstrak}'),
+                  ],
+                )),
+                Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+                  Icon(
+                    Icons.location_on,
+                    size: 20,
+                  ),
+                  Expanded(child: Text('${iniKatalog.lokasi}')),
+                  Icon(
+                    Icons.info,
+                    size: 20,
+                  ),
+                ]),
+              ],
+            )),
       ),
     );
   }

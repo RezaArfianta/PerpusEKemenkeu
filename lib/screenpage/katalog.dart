@@ -6,7 +6,6 @@ import 'package:dio/dio.dart';
 import 'package:perpuskemenkeu/models/katalogmodel.dart';
 import 'package:perpuskemenkeu/services.dart';
 
-
 class Katalog extends StatefulWidget {
   const Katalog({Key? key, required this.title}) : super(key: key);
 
