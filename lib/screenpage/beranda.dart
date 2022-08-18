@@ -7,31 +7,22 @@ import 'package:perpuskemenkeu/services.dart';
 import 'package:perpuskemenkeu/models/buku.dart';
 
 
-class Home extends StatefulWidget {
-  const Home({Key? key, required this.title}) : super(key: key);
+class Beranda extends StatefulWidget {
+  const Beranda({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<Home> createState() => _Home();
+  State<Beranda> createState() => _Beranda();
 }
 
-class _Home extends State<Home> {
+class _Beranda extends State<Beranda> {
   List<Buku>? listTerbaru;
   List<Buku>? listTerlaris;
   bool loading = false;
-  int currentIndex = 0;
-
-  final screens = [
-    Home(title: 'Perpustakaan'),
-    Katalog(title: 'Perpustakaan'),
-  ];
-
-  void onTappedBar(int index){
-    setState(() {
-      currentIndex = index;
-    });
-  }
+  
+  
+  
 
   @override
   void initState() {
@@ -157,20 +148,6 @@ class _Home extends State<Home> {
         ),
       ) : Center(child: Text('no data'),),
 
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-            ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: 'Katalog')
-        ],
-      ),
 
 
     );

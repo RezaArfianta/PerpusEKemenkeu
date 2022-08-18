@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import 'dart:developer';
 import 'package:perpuskemenkeu/screenpage/beranda.dart';
-=======
->>>>>>> 1d088cbe107d3a3a22d5fd5e75be153eaa49a39f
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:perpuskemenkeu/widgets/card_katalog.dart';
@@ -22,13 +19,6 @@ class Katalog extends StatefulWidget {
 class _Katalog extends State<Katalog> {
   List<Catalogue>? listKatalog;
   bool loading = false;
-  int currentIndex = 1;
-
-  final screens = [
-    Home(title: 'Perpustakaan'),
-    Katalog(title: 'Perpustakaan'),
-  ];
-
 
   @override
   void initState() {
@@ -118,18 +108,6 @@ class _Katalog extends State<Katalog> {
               : Center(
                   child: Text('no data'),
                 ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Katalog')
-        ],
-      ),
     );
   }
 }
