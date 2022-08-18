@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:perpuskemenkeu/widgets/card_bukuterbaru.dart';
-import 'package:perpuskemenkeu/widgets/card_bukuterlaris.dart';
+import 'package:perpuskemenkeu/screenpage/katalog.dart';
+import 'package:perpuskemenkeu/widgets/card_buku.dart';
 import 'package:dio/dio.dart';
 import 'package:perpuskemenkeu/services.dart';
 import 'package:perpuskemenkeu/models/buku.dart';
@@ -17,10 +17,21 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
-  List<BukuTerbaru>? listTerbaru;
-  List<BukuTerlaris>? listTerlaris;
+  List<Buku>? listTerbaru;
+  List<Buku>? listTerlaris;
   bool loading = false;
   int currentIndex = 0;
+
+  final screens = [
+    Home(title: 'Perpustakaan'),
+    Katalog(title: 'Perpustakaan'),
+  ];
+
+  void onTappedBar(int index){
+    setState(() {
+      currentIndex = index;
+    });
+  }
 
   @override
   void initState() {
@@ -49,7 +60,7 @@ class _Home extends State<Home> {
       Container(
         child: ListView(
           children: <Widget>[
-            SizedBox(height: 20,
+            SizedBox(height: 25,
             ),
             Container(
               margin: EdgeInsets.only(left: 15),       
@@ -59,26 +70,38 @@ class _Home extends State<Home> {
                 textAlign: TextAlign.left,),
             ),
             Container(
-            height: 360,
+            height: 320,
+            
             child: ListView.separated(
               padding: EdgeInsets.all(10),         
               scrollDirection: Axis.horizontal,
               itemCount: listTerbaru!.length,
               separatorBuilder: (context, _) => SizedBox(width: 12,),
               itemBuilder: (context, int index){
-                return InkWell(child: CardTerbaru(bukuTerbaru : listTerbaru![index]),
+                return InkWell(child: CardBuku(buku : listTerbaru![index]),
                 onTap: (){
                   print('ada');
-                  showDialog(
+                 showDialog(
                     context: context, builder: (context) => AlertDialog(
                       title: Text('Angkasa'),
-                      content: Text('Angkasa lalala'),
+                      content: SingleChildScrollView(
+                
+                        child: Container(
+                          height: 150,
+                          width: 150,
+                          child: ListView(
+                            children: [
+                             Text('ok'),
+                            ],
+                          shrinkWrap: true,
+                      ),
+                        )),
                       actions: [
                         TextButton(onPressed: (){
                           Navigator.pop(context);
                         }, child: Text('Close'))
                       ],
-                    ));
+                    )); 
                   } ,);
                 },
               ),
@@ -93,20 +116,31 @@ class _Home extends State<Home> {
                 textAlign: TextAlign.left,),
             ),
             Container(
-            height: 360,
+            height: 320,
             child: ListView.separated(
               padding: EdgeInsets.all(10),         
               scrollDirection: Axis.horizontal,
               itemCount: listTerlaris!.length,
               separatorBuilder: (context, _) => SizedBox(width: 12,),
               itemBuilder: (context, int index){
-                return InkWell(child: CardTerlaris(bukuTerlaris: listTerlaris![index]),
+                return InkWell(child: CardBuku(buku: listTerlaris![index]),
                 onTap: (){
                   print('ada');
                   showDialog(
                     context: context, builder: (context) => AlertDialog(
                       title: Text('Angkasa'),
-                      content: Text('Angkasa lalala'),
+                      content: SingleChildScrollView(
+                
+                        child: Container(
+                          height: 150,
+                          width: 150,
+                          child: ListView(
+                            children: [
+                             Text('ok'),
+                            ],
+                          shrinkWrap: true,
+                      ),
+                        )),
                       actions: [
                         TextButton(onPressed: (){
                           Navigator.pop(context);

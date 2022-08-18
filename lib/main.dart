@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:perpuskemenkeu/screenpage/katalog.dart';
-import 'screenpage/home.dart';
+import 'screenpage/beranda.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Katalog(title: 'Perpustakaan'),
+      home: const Home(title: 'Perpustakaan'),
     );
   }
 }

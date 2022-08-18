@@ -6,12 +6,12 @@ import 'models/buku.dart';
 
 abstract class Services{
 
-  static Future<List<BukuTerbaru>?> getListBukuTerbaru() async {
+  static Future<List<Buku>?> getListBukuTerbaru() async {
     try{
       Response response = await Dio().get('https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/GetTerbaru');
       print('dapat data terbaru');
         if(response.statusCode == 200){
-          return List<BukuTerbaru>.from(response.data['Data'].map((i) => BukuTerbaru.fromJson(i)));
+          return List<Buku>.from(response.data['Data'].map((i) => Buku.fromJson(i)));
         }else{
           return null;
         }
@@ -21,12 +21,12 @@ abstract class Services{
     }
   }
 
-  static Future<List<BukuTerlaris>?> getListBukuTerlaris() async {
+  static Future<List<Buku>?> getListBukuTerlaris() async {
     try {
       Response response = await Dio().get('https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/GetTerlaris');
       print('dapat data terlaris');
       if (response.statusCode == 200) {
-        return List<BukuTerlaris>.from(response.data['Data'].map((i) => BukuTerlaris.fromJson(i)));
+        return List<Buku>.from(response.data['Data'].map((i) => Buku.fromJson(i)));
       }
     } catch (e) {
       print(e);

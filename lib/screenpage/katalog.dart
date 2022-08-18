@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:perpuskemenkeu/screenpage/beranda.dart';
 import 'package:flutter/material.dart';
 import 'package:perpuskemenkeu/widgets/card_katalog.dart';
 import 'package:dio/dio.dart';
@@ -18,7 +18,13 @@ class Katalog extends StatefulWidget {
 class _Katalog extends State<Katalog> {
   List<Catalogue>? listKatalog;
   bool loading = false;
-  int currentIndex = 0;
+  int currentIndex = 1;
+
+  final screens = [
+    Home(title: 'Perpustakaan'),
+    Katalog(title: 'Perpustakaan'),
+  ];
+
 
   @override
   void initState() {
