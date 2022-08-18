@@ -18,7 +18,54 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+<<<<<<< HEAD
       home: const Katalog(title: 'Perpustakaan'),
+=======
+      home: const Lobby(),
+>>>>>>> 47c3c776c72003413b9e823c0d65b576d47bba2c
+    );
+  }
+}
+
+class Lobby extends StatefulWidget {
+  const Lobby({Key? key}) : super(key: key);
+
+  @override
+  State<Lobby> createState() => _LobbyState();
+}
+
+class _LobbyState extends State<Lobby> {
+  
+  int _currentIndex = 0;
+  
+  final List<Widget> _children = [
+    Beranda(title: 'Perpustakaan',),
+    Katalog(title: 'Perpustakaan')
+  ];
+  void onTappedBar(int index){
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _children[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: onTappedBar,
+        currentIndex: _currentIndex,
+        
+        items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Beranda',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.book),
+          label: 'Catalog'
+          )
+      ]),
     );
   }
 }
