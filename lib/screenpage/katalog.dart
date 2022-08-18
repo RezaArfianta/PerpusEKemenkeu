@@ -68,13 +68,10 @@ class _Katalog extends State<Katalog> {
                             ),
                           )),
                       Container(
-                        height: 800,
-                        child: ListView.separated(
+                        height: 700,
+                        child: ListView.builder(
                           padding: EdgeInsets.all(10),
                           itemCount: listKatalog!.length + 1,
-                          separatorBuilder: (context, _) => SizedBox(
-                            width: 12,
-                          ),
                           itemBuilder: (context, int index) {
                             if (index == listKatalog!.length) {
                               return ButtonBar(
