@@ -10,12 +10,11 @@ class KatalogCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.fromLTRB(14, 4, 14, 4),
       child: Card(
-        clipBehavior: Clip.antiAlias,
         elevation: 16,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         child: Container(
-            width: 400,
-            padding: const EdgeInsets.all(25),
+            width: 200,
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 Container(
@@ -24,22 +23,33 @@ class KatalogCard extends StatelessWidget {
                   children: [
                     Text(
                       '${iniKatalog.judulbuku}',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
-                    Text('${iniKatalog.abstrak}'),
+                    Text(
+                      '${iniKatalog.abstrak}',
+                      style: TextStyle(fontSize: 15),
+                    ),
                   ],
                 )),
-                Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+                Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Icon(
                     Icons.location_on,
                     size: 20,
+                    color: Colors.grey,
                   ),
                   Expanded(child: Text('${iniKatalog.lokasi}')),
-                  Icon(
-                    Icons.info,
-                    size: 20,
-                  ),
                 ]),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Icon(
+                      Icons.info,
+                      size: 20,
+                      color: Colors.grey,
+                    ),
+                  ],
+                )
               ],
             )),
       ),
