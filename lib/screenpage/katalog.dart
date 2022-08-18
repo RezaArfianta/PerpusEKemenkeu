@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import 'dart:developer';
 import 'package:perpuskemenkeu/screenpage/beranda.dart';
-=======
->>>>>>> 1d088cbe107d3a3a22d5fd5e75be153eaa49a39f
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:perpuskemenkeu/widgets/card_katalog.dart';
@@ -21,26 +18,20 @@ class Katalog extends StatefulWidget {
 
 class _Katalog extends State<Katalog> {
   List<Catalogue>? listKatalog;
+  int page = 1;
   bool loading = false;
-  int currentIndex = 1;
-
-  final screens = [
-    Home(title: 'Perpustakaan'),
-    Katalog(title: 'Perpustakaan'),
-  ];
-
 
   @override
   void initState() {
     super.initState();
-    fetch();
+    fetch(page);
   }
 
-  fetch() async {
+  fetch(int page) async {
     setState(() {
       loading = true;
     });
-    listKatalog = await Services.getListCatalogue();
+    listKatalog = await Services.getListCatalogue(page);
     setState(() {
       loading = false;
     });
@@ -80,31 +71,59 @@ class _Katalog extends State<Katalog> {
                         height: 800,
                         child: ListView.separated(
                           padding: EdgeInsets.all(10),
-                          itemCount: listKatalog!.length,
+                          itemCount: listKatalog!.length + 1,
                           separatorBuilder: (context, _) => SizedBox(
                             width: 12,
                           ),
                           itemBuilder: (context, int index) {
-                            return InkWell(
-                              child:
-                                  KatalogCard(iniKatalog: listKatalog![index]),
-                              onTap: () {
-                                print('ada');
-                                showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                          title: Text('Angkasa'),
-                                          content: Text('Angkasa lalala'),
-                                          actions: [
-                                            TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text('Close'))
-                                          ],
-                                        ));
-                              },
-                            );
+                            if (index == listKatalog!.length) {
+                              return ButtonBar(
+                                children: [
+                                  Text('page $page'),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        if (page > 1) {
+                                          page = page - 1;
+                                          fetch(page);
+                                        }
+                                      });
+                                    },
+                                    child: Text('Prev'),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        page = page + 1;
+                                        fetch(page);
+                                      });
+                                    },
+                                    child: Text('Next'),
+                                  )
+                                ],
+                              );
+                            } else {
+                              return InkWell(
+                                child: KatalogCard(
+                                    iniKatalog: listKatalog![index]),
+                                onTap: () {
+                                  print('ada');
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                            title: Text('Angkasa'),
+                                            content: Text('Angkasa lalala'),
+                                            actions: [
+                                              TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text('Close'))
+                                            ],
+                                          ));
+                                },
+                              );
+                            }
                           },
                         ),
                       ),
@@ -118,18 +137,6 @@ class _Katalog extends State<Katalog> {
               : Center(
                   child: Text('no data'),
                 ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Katalog')
-        ],
-      ),
     );
   }
 }
