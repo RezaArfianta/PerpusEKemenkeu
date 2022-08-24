@@ -70,30 +70,10 @@ class _Beranda extends State<Beranda> {
               separatorBuilder: (context, _) => SizedBox(width: 12,),
               itemBuilder: (context, int index){
                 return InkWell(child: CardBuku(buku : listTerbaru![index]),
-                onTap: (){
-                  print('ada');
-                 showDialog(
-                    context: context, builder: (context) => AlertDialog(
-                      title: Text('Angkasa'),
-                      content: SingleChildScrollView(
-                
-                        child: Container(
-                          height: 150,
-                          width: 150,
-                          child: ListView(
-                            children: [
-                             Text('ok'),
-                            ],
-                          shrinkWrap: true,
-                      ),
-                        )),
-                      actions: [
-                        TextButton(onPressed: (){
-                          Navigator.pop(context);
-                        }, child: Text('Close'))
-                      ],
-                    )); 
-                  } ,);
+                onTap: () {
+                  print('data ada');
+                },
+                );
                 },
               ),
             ),
@@ -117,27 +97,6 @@ class _Beranda extends State<Beranda> {
                 return InkWell(child: CardBuku(buku: listTerlaris![index]),
                 onTap: (){
                   print('ada');
-                  showDialog(
-                    context: context, builder: (context) => AlertDialog(
-                      title: Text('Angkasa'),
-                      content: SingleChildScrollView(
-                
-                        child: Container(
-                          height: 150,
-                          width: 150,
-                          child: ListView(
-                            children: [
-                             Text('ok'),
-                            ],
-                          shrinkWrap: true,
-                      ),
-                        )),
-                      actions: [
-                        TextButton(onPressed: (){
-                          Navigator.pop(context);
-                        }, child: Text('Close'))
-                      ],
-                    ));
                   } ,);
                 },
               ),
