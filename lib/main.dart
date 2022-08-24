@@ -31,14 +31,15 @@ class Lobby extends StatefulWidget {
 }
 
 class _LobbyState extends State<Lobby> {
-  
   int _currentIndex = 0;
-  
+
   final List<Widget> _children = [
-    Beranda(title: 'Perpustakaan',),
+    Beranda(
+      title: 'Perpustakaan',
+    ),
     Katalog(title: 'Perpustakaan')
   ];
-  void onTappedBar(int index){
+  void onTappedBar(int index) {
     setState(() {
       _currentIndex = index;
     });
@@ -49,19 +50,15 @@ class _LobbyState extends State<Lobby> {
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        onTap: onTappedBar,
-        currentIndex: _currentIndex,
-        
-        items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Beranda',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.book),
-          label: 'Catalog'
-          )
-      ]),
+          onTap: onTappedBar,
+          currentIndex: _currentIndex,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Beranda',
+            ),
+            BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Catalog')
+          ]),
     );
   }
 }

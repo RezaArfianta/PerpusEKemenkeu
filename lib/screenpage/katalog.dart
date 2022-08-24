@@ -18,19 +18,20 @@ class Katalog extends StatefulWidget {
 
 class _Katalog extends State<Katalog> {
   List<Catalogue>? listKatalog;
+  int page = 1;
   bool loading = false;
 
   @override
   void initState() {
     super.initState();
-    fetch();
+    fetch(page);
   }
 
-  fetch() async {
+  fetch(int page) async {
     setState(() {
       loading = true;
     });
-    listKatalog = await Services.getListCatalogue();
+    listKatalog = await Services.getListCatalogue(page);
     setState(() {
       loading = false;
     });
@@ -67,34 +68,59 @@ class _Katalog extends State<Katalog> {
                             ),
                           )),
                       Container(
-                        height: 800,
-                        child: ListView.separated(
+                        height: 700,
+                        child: ListView.builder(
                           padding: EdgeInsets.all(10),
-                          itemCount: listKatalog!.length,
-                          separatorBuilder: (context, _) => SizedBox(
-                            width: 12,
-                          ),
+                          itemCount: listKatalog!.length + 1,
                           itemBuilder: (context, int index) {
-                            return InkWell(
-                              child:
-                                  KatalogCard(iniKatalog: listKatalog![index]),
-                              onTap: () {
-                                print('ada');
-                                showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                          title: Text('Angkasa'),
-                                          content: Text('Angkasa lalala'),
-                                          actions: [
-                                            TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text('Close'))
-                                          ],
-                                        ));
-                              },
-                            );
+                            if (index == listKatalog!.length) {
+                              return ButtonBar(
+                                children: [
+                                  Text('page $page'),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        if (page > 1) {
+                                          page = page - 1;
+                                          fetch(page);
+                                        }
+                                      });
+                                    },
+                                    child: Text('Prev'),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        page = page + 1;
+                                        fetch(page);
+                                      });
+                                    },
+                                    child: Text('Next'),
+                                  )
+                                ],
+                              );
+                            } else {
+                              return InkWell(
+                                child: KatalogCard(
+                                    iniKatalog: listKatalog![index]),
+                                onTap: () {
+                                  print('ada');
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                            title: Text('Angkasa'),
+                                            content: Text('Angkasa lalala'),
+                                            actions: [
+                                              TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text('Close'))
+                                            ],
+                                          ));
+                                },
+                              );
+                            }
                           },
                         ),
                       ),

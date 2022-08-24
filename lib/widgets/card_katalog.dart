@@ -25,10 +25,12 @@ class KatalogCard extends StatelessWidget {
                       '${iniKatalog.judulbuku}',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                      textAlign: TextAlign.start,
                     ),
                     Text(
                       '${iniKatalog.abstrak}',
                       style: TextStyle(fontSize: 15),
+                      textAlign: TextAlign.start,
                     ),
                   ],
                 )),
