@@ -65,15 +65,18 @@ class _Katalog extends State<Katalog> {
               height: 20,
             ),
             Container(
-                margin: EdgeInsets.only(left: 15),
+                margin: EdgeInsets.fromLTRB(16, 16, 16, 16),
                 height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black26),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 8),
                 child: TextField(
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search),
+                    icon: Icon(Icons.search),
                     hintText: 'Judul Buku / Abstrak',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.grey)),
                   ),
                 )),
             Container(
