@@ -96,7 +96,7 @@ class _Beranda extends State<Beranda> {
               itemBuilder: (context, int index){
                 return InkWell(child: CardBuku(buku: listTerlaris![index]),
                 onTap: (){
-                  print('ada');
+                  print('data ada');
                   } ,);
                 },
               ),
