@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'models/katalogmodel.dart';
 import 'models/buku.dart';
+import 'models/response_riwayat.dart';
 
 //Buat semua pemanggilan API di seluruh page ke file services.dart ini
 
@@ -54,4 +55,13 @@ abstract class Services {
   }
 
   static createUser(String s, String t, String u) {}
+
+
+  static Future<ResponseRiwayat?> getListRiwayat(int page) async {
+    try{
+      Response response = await Dio().get
+    }catch {
+      return null;
+    }
+  }
 }
