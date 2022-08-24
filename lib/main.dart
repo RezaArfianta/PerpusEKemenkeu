@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screenpage/home.dart';
+import 'package:perpuskemenkeu/screenpage/katalog.dart';
+import 'screenpage/beranda.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,47 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Home(title: 'Perpustakaan'),
+      home: const Lobby(),
+    );
+  }
+}
+
+class Lobby extends StatefulWidget {
+  const Lobby({Key? key}) : super(key: key);
+
+  @override
+  State<Lobby> createState() => _LobbyState();
+}
+
+class _LobbyState extends State<Lobby> {
+  int _currentIndex = 0;
+
+  final List<Widget> _children = [
+    Beranda(
+      title: 'Perpustakaan',
+    ),
+    Katalog(title: 'Perpustakaan')
+  ];
+  void onTappedBar(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _children[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: onTappedBar,
+          currentIndex: _currentIndex,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Beranda',
+            ),
+            BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Catalog')
+          ]),
     );
   }
 }
