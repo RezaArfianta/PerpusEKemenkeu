@@ -37,13 +37,12 @@ abstract class Services {
     }
   }
 
-  static Future<List<Catalogue>?> getListCatalogue(int page) async {
+  static Future<KatalogResponse?> getListCatalogue(int page) async {
     try {
       Response response = await Dio().get(
           'https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/GetAll?PageSize=10&Page=$page');
       if (response.statusCode == 200) {
-        return List<Catalogue>.from(
-            response.data['Data'].map((i) => Catalogue.fromJson(i)));
+        return KatalogResponse.fromJson(response.data);
       } else {
         return null;
       }
