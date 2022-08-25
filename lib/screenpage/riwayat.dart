@@ -7,12 +7,9 @@ import 'package:perpuskemenkeu/models/riwayatmodel.dart';
 import '../widgets/card_riwayat.dart';
 
 class RiwayatPage extends StatefulWidget {
- 
- final String title;
+  final String title;
 
-  const RiwayatPage({Key? key, required  this.title}) : super(key: key);
-
- 
+  const RiwayatPage({Key? key, required this.title}) : super(key: key);
 
   @override
   State<RiwayatPage> createState() => _Riwayat();
@@ -35,7 +32,7 @@ class _Riwayat extends State<RiwayatPage> {
       if (_scrollController.position.maxScrollExtent ==
           _scrollController.offset) {
         print('ok $page ${listRiwayat.length}');
-        fetch(page++,'');
+        fetch(page++, '');
       }
     });
   }
@@ -45,12 +42,10 @@ class _Riwayat extends State<RiwayatPage> {
       loading = true;
     });
     iniriwayat = await Services.getListHistory(page, keyword);
-    if(iniriwayat != null){
-      
-    listRiwayat.addAll(iniriwayat!.data!);
-    
-    hasMore = page * 10 <= iniriwayat!.total!;
+    if (iniriwayat != null) {
+      listRiwayat.addAll(iniriwayat!.data!);
 
+      hasMore = page * 10 <= iniriwayat!.total!;
     }
     setState(() {
       loading = false;
@@ -75,7 +70,7 @@ class _Riwayat extends State<RiwayatPage> {
                 margin: EdgeInsets.only(left: 15),
                 height: 40,
                 child: TextField(
-                  onSubmitted: (text){
+                  onSubmitted: (text) {
                     fetch(page, text);
                   },
                   decoration: InputDecoration(
@@ -104,7 +99,9 @@ class _Riwayat extends State<RiwayatPage> {
                     );
                   } else {
                     return InkWell(
-                      child: RiwayatCard(iniRiwayat: listRiwayat[index],),
+                      child: RiwayatCard(
+                        iniRiwayat: listRiwayat[index],
+                      ),
                       onTap: () {
                         print('ada');
                         showDialog(
