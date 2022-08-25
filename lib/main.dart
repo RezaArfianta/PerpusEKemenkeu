@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:perpuskemenkeu/screenpage/katalog.dart';
+import 'package:perpuskemenkeu/screenpage/riwayat.dart';
 import 'screenpage/beranda.dart';
 
 void main() {
@@ -37,7 +38,12 @@ class _LobbyState extends State<Lobby> {
     Beranda(
       title: 'Perpustakaan',
     ),
-    Katalog(title: 'Perpustakaan')
+    Katalog(
+      title: 'Perpustakaan'
+      ),
+    RiwayatPage(
+      title: 'Perpustakaan'
+      )
   ];
   void onTappedBar(int index) {
     setState(() {
@@ -57,7 +63,13 @@ class _LobbyState extends State<Lobby> {
               icon: Icon(Icons.home),
               label: 'Beranda',
             ),
-            BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Catalog')
+            BottomNavigationBarItem(
+              icon: Icon(Icons.book),
+              label: 'Catalog'
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.lock_clock),
+              label: 'Riwayat')
           ]),
     );
   }

@@ -6,7 +6,6 @@ import 'package:dio/dio.dart';
 import 'package:perpuskemenkeu/services.dart';
 import 'package:perpuskemenkeu/models/buku.dart';
 
-
 class Beranda extends StatefulWidget {
   const Beranda({Key? key, required this.title}) : super(key: key);
 
@@ -20,9 +19,6 @@ class _Beranda extends State<Beranda> {
   List<Buku>? listTerbaru;
   List<Buku>? listTerlaris;
   bool loading = false;
-  
-  
-  
 
   @override
   void initState() {
@@ -30,7 +26,7 @@ class _Beranda extends State<Beranda> {
     fetch();
   }
 
-  fetch()async{
+  fetch() async {
     setState(() {
       loading = true;
     });
@@ -40,6 +36,7 @@ class _Beranda extends State<Beranda> {
       loading = false;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -47,109 +44,85 @@ class _Beranda extends State<Beranda> {
       appBar: AppBar(
         title: Text('Beranda'),
       ),
-      body: loading ? Center(child: CircularProgressIndicator(),) : listTerbaru != null ?
-      Container(
-        child: ListView(
-          children: <Widget>[
-            SizedBox(height: 25,
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 15),       
-              height: 40,
-              child: Text('Buku Terbaru', 
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.left,),
-            ),
-            Container(
-            height: 320,
-            
-            child: ListView.separated(
-              padding: EdgeInsets.all(10),         
-              scrollDirection: Axis.horizontal,
-              itemCount: listTerbaru!.length,
-              separatorBuilder: (context, _) => SizedBox(width: 12,),
-              itemBuilder: (context, int index){
-                return InkWell(child: CardBuku(buku : listTerbaru![index]),
-                onTap: (){
-                  print('ada');
-                 showDialog(
-                    context: context, builder: (context) => AlertDialog(
-                      title: Text('Angkasa'),
-                      content: SingleChildScrollView(
-                
-                        child: Container(
-                          height: 150,
-                          width: 150,
-                          child: ListView(
-                            children: [
-                             Text('ok'),
-                            ],
-                          shrinkWrap: true,
+      body: loading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : listTerbaru != null
+              ? Container(
+                  child: ListView(children: <Widget>[
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 15),
+                      height: 40,
+                      child: Text(
+                        'Buku Terbaru',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.left,
                       ),
-                        )),
-                      actions: [
-                        TextButton(onPressed: (){
-                          Navigator.pop(context);
-                        }, child: Text('Close'))
-                      ],
-                    )); 
-                  } ,);
-                },
-              ),
-            ),
-            SizedBox(height: 25,
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 15),       
-              height: 40,
-              child: Text('Buku Terlaris', 
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.left,),
-            ),
-            Container(
-            height: 320,
-            child: ListView.separated(
-              padding: EdgeInsets.all(10),         
-              scrollDirection: Axis.horizontal,
-              itemCount: listTerlaris!.length,
-              separatorBuilder: (context, _) => SizedBox(width: 12,),
-              itemBuilder: (context, int index){
-                return InkWell(child: CardBuku(buku: listTerlaris![index]),
-                onTap: (){
-                  print('ada');
-                  showDialog(
-                    context: context, builder: (context) => AlertDialog(
-                      title: Text('Angkasa'),
-                      content: SingleChildScrollView(
-                
-                        child: Container(
-                          height: 150,
-                          width: 150,
-                          child: ListView(
-                            children: [
-                             Text('ok'),
-                            ],
-                          shrinkWrap: true,
+                    ),
+                    Container(
+                      height: 320,
+                      child: ListView.separated(
+                        padding: EdgeInsets.all(10),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: listTerbaru!.length,
+                        separatorBuilder: (context, _) => SizedBox(
+                          width: 12,
+                        ),
+                        itemBuilder: (context, int index) {
+                          return InkWell(
+                            child: CardBuku(buku: listTerbaru![index]),
+                            onTap: () {
+                              print('data ada');
+                            },
+                          );
+                        },
                       ),
-                        )),
-                      actions: [
-                        TextButton(onPressed: (){
-                          Navigator.pop(context);
-                        }, child: Text('Close'))
-                      ],
-                    ));
-                  } ,);
-                },
-              ),
-            ),
-            SizedBox(height: 25,
-            ),
-          ]
-        ),
-      ) : Center(child: Text('no data'),),
-
-
-
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 15),
+                      height: 40,
+                      child: Text(
+                        'Buku Terlaris',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    Container(
+                      height: 320,
+                      child: ListView.separated(
+                        padding: EdgeInsets.all(10),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: listTerlaris!.length,
+                        separatorBuilder: (context, _) => SizedBox(
+                          width: 12,
+                        ),
+                        itemBuilder: (context, int index) {
+                          return InkWell(
+                            child: CardBuku(buku: listTerlaris![index]),
+                            onTap: () {
+                              print('data ada');
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                  ]),
+                )
+              : Center(
+                  child: Text('no data'),
+                ),
     );
-  } 
+  }
 }
