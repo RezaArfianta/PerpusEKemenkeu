@@ -6,12 +6,8 @@ import 'package:perpuskemenkeu/models/riwayatmodel.dart';
 import '../screenpage/riwayat.dart';
 
 class RiwayatCard extends StatelessWidget {
-  
-  final History? iniRiwayat;
-  
-
-   const RiwayatCard({Key? key, this.iniRiwayat,}) : super(key: key);
-
+   RiwayatCard({Key? key, this.iniRiwayat,}) : super(key: key);
+    History? iniRiwayat;
   @override
   Widget build(BuildContext context) {
     return Card(

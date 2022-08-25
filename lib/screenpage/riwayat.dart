@@ -1,5 +1,3 @@
-import 'dart:developer';
-import 'package:perpuskemenkeu/screenpage/beranda.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:dio/dio.dart';
@@ -47,8 +45,13 @@ class _Riwayat extends State<RiwayatPage> {
       loading = true;
     });
     iniriwayat = await Services.getListHistory(page, keyword);
+    if(iniriwayat != null){
+      
     listRiwayat.addAll(iniriwayat!.data!);
+    
     hasMore = page * 10 <= iniriwayat!.total!;
+
+    }
     setState(() {
       loading = false;
     });
