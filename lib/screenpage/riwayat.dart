@@ -46,9 +46,14 @@ class _Riwayat extends State<RiwayatPage> {
     setState(() {
       loading = true;
     });
-    iniriwayat = await Services.getListRiwayat(page);
+    iniriwayat = await Services.getListHistory(page);
+    if(iniriwayat != null){
+      
     listRiwayat.addAll(iniriwayat!.data!);
+    
     hasMore = page * 10 <= iniriwayat!.total!;
+
+    }
     setState(() {
       loading = false;
     });
