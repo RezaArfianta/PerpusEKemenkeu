@@ -52,5 +52,21 @@ abstract class Services {
     }
   }
 
+  static Future<List<PopupKatalog>?> getListDetailCatalogue() async {
+    try {
+      Response response = await Dio()
+          .get('https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/1');
+      if (response.statusCode == 200) {
+        return List<PopupKatalog>.from(
+            response.data['Data'].map((i) => PopupKatalog.fromJson(i)));
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
   static createUser(String s, String t, String u) {}
 }

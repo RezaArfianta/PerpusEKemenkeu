@@ -54,77 +54,61 @@ class _Katalog extends State<Katalog> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Perpustakaan'),
-      ),
-      body: Container(
-        child: ListView(
-          shrinkWrap: false,
-          children: <Widget>[
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-                margin: EdgeInsets.fromLTRB(16, 16, 16, 16),
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.white,
-                  border: Border.all(color: Colors.black26),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: TextField(
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.search),
-                    hintText: 'Judul Buku / Abstrak',
-                  ),
-                )),
-            Container(
-              height: 700,
-              child: ListView.builder(
-                controller: _scrollController,
-                shrinkWrap: true,
-                padding: EdgeInsets.all(10),
-                itemCount: listKatalog.length + 1,
-                itemBuilder: (context, int index) {
-                  if (index == listKatalog.length) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Center(
-                          child: hasMore
-                              ? const CircularProgressIndicator()
-                              : const Text('data habis')),
-                    );
-                  } else {
-                    return InkWell(
-                      child: KatalogCard(iniKatalog: listKatalog[index]!),
-                      onTap: () {
-                        print('ada');
-                        showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                                  title: Text('Angkasa'),
-                                  content: Text('Angkasa lalala'),
-                                  actions: [
-                                    TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text('Close'))
-                                  ],
-                                ));
-                      },
-                    );
-                  }
-                },
-              ),
-            ),
-            SizedBox(
-              height: 25,
-            ),
-          ],
+        appBar: AppBar(
+          title: Text('Perpustakaan'),
         ),
-      ),
-    );
+        body: Container(
+          child: ListView(
+            shrinkWrap: false,
+            children: <Widget>[
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                  margin: EdgeInsets.fromLTRB(16, 16, 16, 16),
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.white,
+                    border: Border.all(color: Colors.black26),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.search),
+                      hintText: 'Judul Buku / Abstrak',
+                    ),
+                  )),
+              Container(
+                  height: 700,
+                  child: ListView.builder(
+                      controller: _scrollController,
+                      shrinkWrap: true,
+                      padding: EdgeInsets.all(10),
+                      itemCount: listKatalog.length + 1,
+                      itemBuilder: (context, int index) {
+                        if (index == listKatalog.length) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20),
+                            child: Center(
+                                child: hasMore
+                                    ? const CircularProgressIndicator()
+                                    : const Text('data habis')),
+                          );
+                        } else {
+                          return InkWell(
+                            child: KatalogCard(iniKatalog: listKatalog[index]),
+                            onTap: () {
+                              print('ada');
+                            },
+                          );
+                        }
+                      })),
+              SizedBox(
+                height: 25,
+              ),
+            ],
+          ),
+        ));
   }
 }
