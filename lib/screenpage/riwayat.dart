@@ -1,5 +1,3 @@
-import 'dart:developer';
-import 'package:perpuskemenkeu/screenpage/beranda.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:dio/dio.dart';
@@ -31,22 +29,22 @@ class _Riwayat extends State<RiwayatPage> {
   @override
   void initState() {
     super.initState();
-    fetch(page);
+    fetch(page, '');
 
     _scrollController.addListener(() {
       if (_scrollController.position.maxScrollExtent ==
           _scrollController.offset) {
         print('ok $page ${listRiwayat.length}');
-        fetch(page++);
+        fetch(page++,'');
       }
     });
   }
 
-  fetch(int page) async {
+  fetch(int page, String keyword) async {
     setState(() {
       loading = true;
     });
-    iniriwayat = await Services.getListHistory(page);
+    iniriwayat = await Services.getListHistory(page, keyword);
     if(iniriwayat != null){
       
     listRiwayat.addAll(iniriwayat!.data!);
@@ -77,6 +75,9 @@ class _Riwayat extends State<RiwayatPage> {
                 margin: EdgeInsets.only(left: 15),
                 height: 40,
                 child: TextField(
+                  onSubmitted: (text){
+                    fetch(page, text);
+                  },
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search),
                     hintText: 'Judul Buku / Abstrak',
