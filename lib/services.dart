@@ -44,7 +44,7 @@ abstract class Services {
   static Future<KatalogResponse?> getListCatalogue(int page) async {
     try {
       Response response = await Dio().get(
-          'https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/GetAll?PageSize=10&Page=$page');
+          'https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/1$page');
       if (response.statusCode == 200) {
         return KatalogResponse.fromJson(response.data);
       } else {
@@ -78,20 +78,20 @@ abstract class Services {
     }
   }
 
-  static Future<DetailKatalog?> getListDetailCatalogue() async {
-    try {
-      Response response = await Dio()
-          .get('hhttps://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/1');
-      if (response.statusCode == 200) {
-        return DetailKatalog.fromJson(response.data);
-      } else {
-        return null;
-      }
-    } catch (e) {
-      print(e);
-      return null;
-    }
-  }
+  // static Future<DetailKatalog?> getListDetailCatalogue() async {
+  //   try {
+  //     Response response = await Dio()
+  //         .get('https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/1');
+  //     if (response.statusCode == 200) {
+  //       return DetailKatalog.fromJson(response.data);
+  //     } else {
+  //       return null;
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //     return null;
+  //   }
+  // }
 
   static createUser(String s, String t, String u) {}
 }
