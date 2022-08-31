@@ -3,7 +3,6 @@ import 'models/katalogmodel.dart';
 import 'models/buku.dart';
 import 'models/riwayatmodel.dart';
 
-import 'models/riwayatmodel.dart';
 //Buat semua pemanggilan API di seluruh page ke file services.dart ini
 
 abstract class Services {
@@ -41,10 +40,11 @@ abstract class Services {
     }
   }
 
-  static Future<KatalogResponse?> getListCatalogue(int page) async {
+  static Future<KatalogResponse?> getListCatalogue(
+      int page, String keyword) async {
     try {
       Response response = await Dio().get(
-          'https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/1$page');
+          'https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/GetAll?PageSize=10&Page=$page');
       if (response.statusCode == 200) {
         return KatalogResponse.fromJson(response.data);
       } else {
@@ -59,7 +59,7 @@ abstract class Services {
   static Future<RiwayatResponse?> getListHistory(
       int page, String keyword) async {
     try {
-      Response response = await Dio().post(
+      Response response = await Dio().get(
           'https://demo-service.kemenkeu.go.id/perpustakaan/Sirkulasi/GetAll?PageSize=10&Page=$page',
           options: Options(headers: {
             "Content-Type": "application/json",
@@ -78,20 +78,20 @@ abstract class Services {
     }
   }
 
-  // static Future<DetailKatalog?> getListDetailCatalogue() async {
-  //   try {
-  //     Response response = await Dio()
-  //         .get('https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/1');
-  //     if (response.statusCode == 200) {
-  //       return DetailKatalog.fromJson(response.data);
-  //     } else {
-  //       return null;
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //     return null;
-  //   }
-  // }
+  static Future<DetailKatalog?> getListDetailCatalogue() async {
+    try {
+      Response response = await Dio()
+          .get('https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/1');
+      if (response.statusCode == 200) {
+        return DetailKatalog.fromJson(response.data);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
 
   static createUser(String s, String t, String u) {}
 }
