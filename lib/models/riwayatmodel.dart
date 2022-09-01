@@ -12,12 +12,12 @@ class History {
 
   History.fromJson(Map<String, dynamic> json) {
     lokasi = json['Lokasi'];
-    judulBuku = json['Judul Buku'];
-    namaPenerbit = json['Nama Penerbit'];
-    namaPengarang = json['Nama Pengarang'];
-    tanggalPinjam = json['Tanggal Pinjam'];
-    tanggalKembali = json['Tanggal Kembali'];
-    tanggalKembaliRiil = json['Tanggal Kembali Riil'];
+    judulBuku = json['JudulBuku'];
+    namaPenerbit = json['NamaPenerbit'];
+    namaPengarang = json['NamaPengarang'];
+    tanggalPinjam = json['TanggalPinjam'];
+    tanggalKembali = json['TanggalKembali'];
+    tanggalKembaliRiil = json['TanggalKembaliRiil'];
 
   }
 }
