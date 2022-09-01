@@ -1,16 +1,37 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:perpuskemenkeu/models/katalogmodel.dart';
 import 'package:perpuskemenkeu/services.dart';
 
-class PopupKatalog extends StatelessWidget {
-  PopupKatalog({Key? key, this.detail}) : super(key: key);
-  IsiKatalog? detail;
+class PopupKatalog extends StatefulWidget {
+  PopupKatalog({Key? key, this.katalog}) : super(key: key);
+  Catalogue? katalog;
 
+  @override
+  State<PopupKatalog> createState() => _PopupKatalogState();
+}
+
+class _PopupKatalogState extends State<PopupKatalog> {
+  DetailKatalog? detail;
+  var isLoading = true;
+  
+@override
+  void initState() {
+    super.initState();
+  }
+
+  void fetch() async {
+    detail = await Services.getDetailCatalogue(widget.katalog!.id!);
+    setState(() {
+      isLoading = false;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      child: Container(
+      child: isLoading ? CircularProgressIndicator() : Container(
         margin: EdgeInsets.all(8),
         decoration: BoxDecoration(color: Colors.white),
         height: 450,
@@ -35,7 +56,7 @@ class PopupKatalog extends StatelessWidget {
             ),
             Image(
               image: NetworkImage(
-                'https://perpustakaan.kemenkeu.go.id/img/FileCover/${detail?.fileCover}',
+                'https://perpustakaan.kemenkeu.go.id/img/FileCover/${widget.detail?.fileCover}',
               ),
               width: 100,
               height: 250,
@@ -44,7 +65,7 @@ class PopupKatalog extends StatelessWidget {
               height: 30,
             ),
             Text(
-              '${detail?.judulBuku!}',
+              '${?.judulBuku!}',
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
             ),
             SizedBox(
@@ -64,7 +85,7 @@ class PopupKatalog extends StatelessWidget {
                 ),
                 Text(':'),
                 Expanded(
-                  child: Text('${detail?.namaPengarang}'),
+                  child: Text('${widget.detail?.namaPengarang}'),
                   flex: 4,
                 )
               ],
@@ -86,7 +107,7 @@ class PopupKatalog extends StatelessWidget {
                 ),
                 Text(':'),
                 Expanded(
-                  child: Text('${detail?.namaPenerbit}'),
+                  child: Text('${widget.detail?.namaPenerbit}'),
                   flex: 4,
                 )
               ],
@@ -108,7 +129,7 @@ class PopupKatalog extends StatelessWidget {
                 ),
                 Text(':'),
                 Expanded(
-                  child: Text('${detail?.lokasiRak}'),
+                  child: Text('${widget.detail?.lokasiRak}'),
                   flex: 4,
                 )
               ],
@@ -130,7 +151,7 @@ class PopupKatalog extends StatelessWidget {
                 ),
                 Text(':'),
                 Expanded(
-                  child: Text('${detail?.lokasi}'),
+                  child: Text('${widget.detail?.lokasi}'),
                   flex: 4,
                 )
               ],
