@@ -83,6 +83,12 @@ class _Riwayat extends State<RiwayatPage> {
                         borderSide: BorderSide(color: Colors.grey)),
                   ),
 
+                  controller: InputController,
+                  onSubmitted: (text) {
+                    listRiwayat.clear();
+                    fetch(page, text);
+                    print(InputController);
+                  },
                 )),
             Container(
               height: 700,
