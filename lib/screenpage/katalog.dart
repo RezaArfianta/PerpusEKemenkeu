@@ -15,15 +15,13 @@ class Katalog extends StatefulWidget {
 }
 
 class _Katalog extends State<Katalog> {
-  final TextEditingController myController = TextEditingController();
   ScrollController _scrollController = ScrollController();
   List<Catalogue?> listKatalog = [];
-  List<IsiKatalog?> listPopup = [];
   KatalogResponse? inikatalog;
-  DetailKatalog? iniPopKatalog;
   int page = 1;
   bool loading = false;
   bool hasMore = true;
+  final TextEditingController InputController = TextEditingController();
 
   @override
   void initState() {
@@ -43,10 +41,11 @@ class _Katalog extends State<Katalog> {
     setState(() {
       loading = true;
     });
-    inikatalog = await Services.getListCatalogue(page, '');
-    iniPopKatalog = await Services.getListDetailCatalogue();
-    listKatalog.addAll(inikatalog!.data!);
-    hasMore = page * 10 <= inikatalog!.total!;
+    inikatalog = await Services.getListCatalogue(page, keyword);
+    if (inikatalog != null) {
+      listKatalog.addAll(inikatalog!.data!);
+      hasMore = page * 10 <= inikatalog!.total!;
+    }
     setState(() {
       loading = false;
     });
@@ -61,19 +60,15 @@ class _Katalog extends State<Katalog> {
         ),
         body: Container(
           child: ListView(
-            shrinkWrap: false,
+            shrinkWrap: true,
             children: <Widget>[
               SizedBox(
                 height: 20,
               ),
               Container(
-                  margin: EdgeInsets.only(left: 15),
+                  margin: EdgeInsets.all(10),
                   height: 40,
                   child: TextField(
-                    controller: myController,
-                    onChanged: (value) {
-                      print('onchange');
-                    },
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
                       hintText: 'Judul Buku / Abstrak',
@@ -81,6 +76,12 @@ class _Katalog extends State<Katalog> {
                           borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide(color: Colors.grey)),
                     ),
+                    controller: InputController,
+                    onSubmitted: (text) {
+                      listKatalog.clear();
+                      fetch(page, text);
+                      print(InputController);
+                    },
                   )),
               Container(
                   height: 700,
@@ -99,12 +100,7 @@ class _Katalog extends State<Katalog> {
                                     : const Text('data habis')),
                           );
                         } else {
-                          return InkWell(
-                            child: KatalogCard(iniKatalog: listKatalog[index]),
-                            onTap: () {
-                              print('ada');
-                            },
-                          );
+                          return KatalogCard(iniKatalog: listKatalog[index]);
                         }
                       })),
               SizedBox(

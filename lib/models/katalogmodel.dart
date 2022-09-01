@@ -36,6 +36,33 @@ class KatalogResponse {
   }
 }
 
+class DetailKatalogResponse {
+  IsiKatalog? data;
+  String? errors;
+  bool? success;
+  String? message;
+
+  DetailKatalogResponse({this.data, this.errors, this.success, this.message});
+
+  DetailKatalogResponse.fromJson(Map<String, dynamic> json) {
+    data = json['Data'] != null ? new IsiKatalog.fromJson(json['Data']) : null;
+    errors = json['Errors'];
+    success = json['Success'];
+    message = json['Message'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.data != null) {
+      data['Data'] = this.data!.toJson();
+    }
+    data['Errors'] = this.errors;
+    data['Success'] = this.success;
+    data['Message'] = this.message;
+    return data;
+  }
+}
+
 class IsiKatalog {
   String? judulBuku;
   String? abstrak;
@@ -49,16 +76,16 @@ class IsiKatalog {
   String? lokasiRak;
 
   IsiKatalog(
-      {required this.judulBuku,
-      required this.abstrak,
-      required this.lokasi,
-      required this.subyek,
-      required this.fileCover,
-      required this.namaPenerbit,
-      required this.isbn,
-      required this.namaPengarang,
-      required this.tahunTerbit,
-      required this.lokasiRak});
+      {this.judulBuku,
+      this.abstrak,
+      this.lokasi,
+      this.subyek,
+      this.fileCover,
+      this.namaPenerbit,
+      this.isbn,
+      this.namaPengarang,
+      this.tahunTerbit,
+      this.lokasiRak});
 
   IsiKatalog.fromJson(Map<String, dynamic> json) {
     judulBuku = json['JudulBuku'];
@@ -72,23 +99,19 @@ class IsiKatalog {
     tahunTerbit = json['TahunTerbit'];
     lokasiRak = json['LokasiRak'];
   }
-}
 
-class DetailKatalog {
-  List<IsiKatalog>? data;
-  bool? success;
-  String? message;
-
-  DetailKatalog({this.data, this.success, this.message});
-
-  DetailKatalog.fromJson(Map<String, dynamic> json) {
-    if (json['Data'] != null) {
-      data = <IsiKatalog>[];
-      json['Data'].forEach((v) {
-        data!.add(IsiKatalog.fromJson(v));
-      });
-    }
-    success = json['Success'];
-    message = json['Message'];
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['JudulBuku'] = this.judulBuku;
+    data['Abstrak'] = this.abstrak;
+    data['Lokasi'] = this.lokasi;
+    data['Subyek'] = this.subyek;
+    data['FileCover'] = this.fileCover;
+    data['NamaPenerbit'] = this.namaPenerbit;
+    data['Isbn'] = this.isbn;
+    data['NamaPengarang'] = this.namaPengarang;
+    data['TahunTerbit'] = this.tahunTerbit;
+    data['LokasiRak'] = this.lokasiRak;
+    return data;
   }
 }

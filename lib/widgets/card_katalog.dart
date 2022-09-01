@@ -28,7 +28,7 @@ class KatalogCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${iniKatalog?.judulbuku}',
+                        '${iniKatalog?.id} ${iniKatalog?.judulbuku}',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 15),
                         textAlign: TextAlign.start,
@@ -66,7 +66,9 @@ class KatalogCard extends StatelessWidget {
       onTap: () {
         showDialog(
           context: context,
-          builder: (context) => PopupKatalog(),
+          builder: (context) => PopupKatalog(
+            katalog: iniKatalog,
+          ),
         );
       },
     );
