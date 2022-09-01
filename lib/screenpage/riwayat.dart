@@ -81,6 +81,7 @@ class _Riwayat extends State<RiwayatPage> {
                   ),
                   controller: InputController,
                   onSubmitted: (text) {
+                    listRiwayat.clear();
                     fetch(page, text);
                     print(InputController);
                   },
