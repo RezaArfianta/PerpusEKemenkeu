@@ -36,7 +36,7 @@ class KatalogResponse {
   }
 }
 
-class PopupKatalog {
+class IsiKatalog {
   String? judulBuku;
   String? abstrak;
   String? lokasi;
@@ -48,7 +48,7 @@ class PopupKatalog {
   String? tahunTerbit;
   String? lokasiRak;
 
-  PopupKatalog(
+  IsiKatalog(
       {required this.judulBuku,
       required this.abstrak,
       required this.lokasi,
@@ -60,7 +60,7 @@ class PopupKatalog {
       required this.tahunTerbit,
       required this.lokasiRak});
 
-  PopupKatalog.fromJson(Map<String, dynamic> json) {
+  IsiKatalog.fromJson(Map<String, dynamic> json) {
     judulBuku = json['JudulBuku'];
     abstrak = json['Abstrak'];
     lokasi = json['Lokasi'];
@@ -75,7 +75,7 @@ class PopupKatalog {
 }
 
 class DetailKatalog {
-  List<PopupKatalog>? data;
+  List<IsiKatalog>? data;
   bool? success;
   String? message;
 
@@ -83,9 +83,9 @@ class DetailKatalog {
 
   DetailKatalog.fromJson(Map<String, dynamic> json) {
     if (json['Data'] != null) {
-      data = <PopupKatalog>[];
+      data = <IsiKatalog>[];
       json['Data'].forEach((v) {
-        data!.add(PopupKatalog.fromJson(v));
+        data!.add(IsiKatalog.fromJson(v));
       });
     }
     success = json['Success'];

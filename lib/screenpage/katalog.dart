@@ -1,7 +1,5 @@
 import 'dart:developer';
-import 'package:perpuskemenkeu/screenpage/beranda.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:perpuskemenkeu/widgets/card_katalog.dart';
 import 'package:dio/dio.dart';
 import 'package:perpuskemenkeu/services.dart';
@@ -17,9 +15,12 @@ class Katalog extends StatefulWidget {
 }
 
 class _Katalog extends State<Katalog> {
+  final TextEditingController myController = TextEditingController();
   ScrollController _scrollController = ScrollController();
   List<Catalogue?> listKatalog = [];
+  List<IsiKatalog?> listPopup = [];
   KatalogResponse? inikatalog;
+  DetailKatalog? iniPopKatalog;
   int page = 1;
   bool loading = false;
   bool hasMore = true;
@@ -27,22 +28,23 @@ class _Katalog extends State<Katalog> {
   @override
   void initState() {
     super.initState();
-    fetch(page);
+    fetch(page, '');
 
     _scrollController.addListener(() {
       if (_scrollController.position.maxScrollExtent ==
           _scrollController.offset) {
         print('ok $page ${listKatalog.length}');
-        fetch(page++);
+        fetch(page++, '');
       }
     });
   }
 
-  fetch(int page) async {
+  fetch(int page, String keyword) async {
     setState(() {
       loading = true;
     });
-    inikatalog = await Services.getListCatalogue(page);
+    inikatalog = await Services.getListCatalogue(page, '');
+    iniPopKatalog = await Services.getListDetailCatalogue();
     listKatalog.addAll(inikatalog!.data!);
     hasMore = page * 10 <= inikatalog!.total!;
     setState(() {
@@ -65,18 +67,19 @@ class _Katalog extends State<Katalog> {
                 height: 20,
               ),
               Container(
-                  margin: EdgeInsets.fromLTRB(16, 16, 16, 16),
+                  margin: EdgeInsets.only(left: 15),
                   height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.white,
-                    border: Border.all(color: Colors.black26),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 8),
                   child: TextField(
+                    controller: myController,
+                    onChanged: (value) {
+                      print('onchange');
+                    },
                     decoration: InputDecoration(
-                      icon: Icon(Icons.search),
+                      prefixIcon: Icon(Icons.search),
                       hintText: 'Judul Buku / Abstrak',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(color: Colors.grey)),
                     ),
                   )),
               Container(

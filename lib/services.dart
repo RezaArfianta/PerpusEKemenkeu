@@ -3,7 +3,6 @@ import 'models/katalogmodel.dart';
 import 'models/buku.dart';
 import 'models/riwayatmodel.dart';
 
-import 'models/riwayatmodel.dart';
 //Buat semua pemanggilan API di seluruh page ke file services.dart ini
 
 abstract class Services {
@@ -41,7 +40,8 @@ abstract class Services {
     }
   }
 
-  static Future<KatalogResponse?> getListCatalogue(int page) async {
+  static Future<KatalogResponse?> getListCatalogue(
+      int page, String keyword) async {
     try {
       Response response = await Dio().get(
           'https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/GetAll?PageSize=10&Page=$page');
@@ -82,7 +82,7 @@ abstract class Services {
   static Future<DetailKatalog?> getListDetailCatalogue() async {
     try {
       Response response = await Dio()
-          .get('hhttps://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/1');
+          .get('https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/1');
       if (response.statusCode == 200) {
         return DetailKatalog.fromJson(response.data);
       } else {
