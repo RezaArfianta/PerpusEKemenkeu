@@ -22,6 +22,7 @@ class _Riwayat extends State<RiwayatPage> {
   int page = 1;
   bool loading = false;
   bool hasMore = true;
+  final TextEditingController InputController = TextEditingController();
 
   @override
   void initState() {
@@ -44,6 +45,10 @@ class _Riwayat extends State<RiwayatPage> {
     iniriwayat = await Services.getListHistory(page, keyword);
     if (iniriwayat != null) {
       listRiwayat.addAll(iniriwayat!.data!);
+      iniriwayat!.data!.forEach((element) {
+        print("isi riwayat ${element.judulBuku}");
+
+      });
 
       hasMore = page * 10 <= iniriwayat!.total!;
     }
@@ -70,9 +75,6 @@ class _Riwayat extends State<RiwayatPage> {
                 margin: EdgeInsets.only(left: 15),
                 height: 40,
                 child: TextField(
-                  onSubmitted: (text) {
-                    fetch(page, text);
-                  },
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search),
                     hintText: 'Judul Buku / Abstrak',
@@ -80,6 +82,7 @@ class _Riwayat extends State<RiwayatPage> {
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.grey)),
                   ),
+
                 )),
             Container(
               height: 700,
