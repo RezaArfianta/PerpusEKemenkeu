@@ -46,7 +46,7 @@ abstract class Services {
       int page, String keyword) async {
     try {
       Response response = await Dio().get(
-          'https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/GetAll?PageSize=10&Page=$page');
+          'https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/GetAll?PageSize=10&Page=$page&keyword=$keyword');
       print('data katalog');
       if (response.statusCode == 200) {
         return KatalogResponse.fromJson(response.data);
@@ -63,12 +63,7 @@ abstract class Services {
       int page, String keyword) async {
     try {
       Response response = await Dio().get(
-<<<<<<< HEAD
-          'https://demo-service.kemenkeu.go.id/perpustakaan/Sirkulasi/GetAll?PageSize=10&Page=$page',
-=======
           'https://demo-service.kemenkeu.go.id/perpustakaan/Sirkulasi/GetAll?PageSize=10&Page=$page&keyword=$keyword',
-
->>>>>>> 624c5cced93a665216ac38de092eeab91f3372be
           options: Options(headers: {
             "Content-Type": "application/json",
             "Authorization":
