@@ -9,7 +9,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -38,12 +37,8 @@ class _LobbyState extends State<Lobby> {
     Beranda(
       title: 'Perpustakaan',
     ),
-    Katalog(
-      title: 'Perpustakaan'
-      ),
-    RiwayatPage(
-      title: 'Perpustakaan'
-      )
+    Katalog(title: 'Perpustakaan'),
+    RiwayatPage(title: 'Perpustakaan')
   ];
   void onTappedBar(int index) {
     setState(() {
@@ -63,13 +58,9 @@ class _LobbyState extends State<Lobby> {
               icon: Icon(Icons.home),
               label: 'Beranda',
             ),
+            BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Catalog'),
             BottomNavigationBarItem(
-              icon: Icon(Icons.book),
-              label: 'Catalog'
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.lock_clock),
-              label: 'Riwayat')
+                icon: Icon(Icons.lock_clock), label: 'Riwayat')
           ]),
     );
   }
