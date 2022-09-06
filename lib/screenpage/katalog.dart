@@ -44,6 +44,9 @@ class _Katalog extends State<Katalog> {
     inikatalog = await Services.getListCatalogue(page, keyword);
     if (inikatalog != null) {
       listKatalog.addAll(inikatalog!.data!);
+      inikatalog!.data!.forEach((element) {
+        print("isi katalog ${element.judulbuku}");
+      });
       hasMore = page * 10 <= inikatalog!.total!;
     }
     setState(() {

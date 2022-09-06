@@ -61,22 +61,29 @@ class _PopupKatalogState extends State<PopupKatalog> {
                       ],
                     ),
                   ),
+                  Expanded(
+                    child: Text(
+                      '${detail?.data?.judulBuku!}',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Image(
                     image: NetworkImage(
                       'https://perpustakaan.kemenkeu.go.id/img/FileCover/${detail?.data?.fileCover}',
                     ),
-                    width: 100,
-                    height: 250,
+                    width: 50,
+                    height: 200,
                   ),
                   SizedBox(
                     height: 30,
                   ),
-                  Text(
-                    '${detail?.data?.judulBuku!}',
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
-                  ),
+                  Text('${detail?.data?.abstrak}'),
                   SizedBox(
-                    height: 7,
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -130,6 +137,28 @@ class _PopupKatalogState extends State<PopupKatalog> {
                     textBaseline: TextBaseline.alphabetic,
                     children: [
                       Expanded(
+                        child: Text('ISBN'),
+                        flex: 3,
+                      ),
+                      Spacer(
+                        flex: 1,
+                      ),
+                      Text(':'),
+                      Expanded(
+                        child: Text('${detail?.data?.isbn}'),
+                        flex: 4,
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Expanded(
                         child: Text('Lokasi Rak'),
                         flex: 3,
                       ),
@@ -138,7 +167,9 @@ class _PopupKatalogState extends State<PopupKatalog> {
                       ),
                       Text(':'),
                       Expanded(
-                        child: Text('${detail?.data?.lokasiRak}'),
+                        child: Text(detail?.data?.lokasiRak != null
+                            ? '${detail?.data?.lokasiRak}'
+                            : ''),
                         flex: 4,
                       )
                     ],
@@ -164,6 +195,31 @@ class _PopupKatalogState extends State<PopupKatalog> {
                         flex: 4,
                       )
                     ],
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Expanded(
+                        child: Text('Subyek'),
+                        flex: 3,
+                      ),
+                      Spacer(
+                        flex: 1,
+                      ),
+                      Text(':'),
+                      Expanded(
+                        child: Text('${detail?.data?.subyek}'),
+                        flex: 4,
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                 ],
               ),
