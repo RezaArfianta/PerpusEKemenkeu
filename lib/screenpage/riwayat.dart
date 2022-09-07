@@ -107,27 +107,7 @@ class _Riwayat extends State<RiwayatPage> {
                               : const Text('data habis')),
                     );
                   } else {
-                    return InkWell(
-                      child: RiwayatCard(
-                        iniRiwayat: listRiwayat[index],
-                      ),
-                      onTap: () {
-                        print('ada');
-                        showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                                  title: Text('Angkasa'),
-                                  content: Text('Angkasa lalala'),
-                                  actions: [
-                                    TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text('Close'))
-                                  ],
-                                ));
-                      },
-                    );
+                    return RiwayatCard(iniRiwayat: listRiwayat[index]);
                   }
                 },
               ),
