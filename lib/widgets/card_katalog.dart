@@ -13,6 +13,7 @@ class KatalogCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       splashFactory: NoSplash.splashFactory,
+      hoverColor: Colors.transparent,
       child: Container(
         padding: EdgeInsets.fromLTRB(14, 4, 14, 4),
         child: Card(
@@ -33,7 +34,6 @@ class KatalogCard extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 15),
                           textAlign: TextAlign.start,
-                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
@@ -51,7 +51,7 @@ class KatalogCard extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 8,
                   ),
                   Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Icon(
@@ -64,10 +64,20 @@ class KatalogCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Icon(
-                        Icons.info,
-                        size: 20,
-                        color: Colors.grey,
+                      IconButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => PopupKatalog(
+                              katalog: iniKatalog,
+                            ),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.info,
+                          size: 20,
+                          color: Colors.grey,
+                        ),
                       ),
                     ],
                   )
@@ -75,14 +85,14 @@ class KatalogCard extends StatelessWidget {
               )),
         ),
       ),
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (context) => PopupKatalog(
-            katalog: iniKatalog,
-          ),
-        );
-      },
+      // onTap: () {
+      //   showDialog(
+      //     context: context,
+      //     builder: (context) => PopupKatalog(
+      //       katalog: iniKatalog,
+      //     ),
+      //   );
+      // },
     );
   }
 }
