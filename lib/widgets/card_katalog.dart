@@ -27,20 +27,32 @@ class KatalogCard extends StatelessWidget {
                       child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        '${iniKatalog?.id} ${iniKatalog?.judulbuku}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
-                        textAlign: TextAlign.start,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Text(
-                        '${iniKatalog?.abstrak}',
-                        style: TextStyle(fontSize: 15),
-                        textAlign: TextAlign.start,
+                      Expanded(
+                        child: Text(
+                          '${iniKatalog?.judulbuku}',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                          textAlign: TextAlign.start,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ],
                   )),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '${iniKatalog?.abstrak}',
+                          style: TextStyle(fontSize: 15),
+                          textAlign: TextAlign.start,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Icon(
                       Icons.location_on,
