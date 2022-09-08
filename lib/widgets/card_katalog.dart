@@ -45,9 +45,13 @@ class KatalogCard extends StatelessWidget {
                           '${iniKatalog?.abstrak}',
                           style: TextStyle(fontSize: 15),
                           textAlign: TextAlign.start,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 5,
                   ),
                   Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Icon(
