@@ -65,22 +65,24 @@ class _Riwayat extends State<RiwayatPage> {
         title: Text('Perpustakaan'),
       ),
       body: Container(
-        child: ListView(
-          shrinkWrap: false,
+        child: ScrollConfiguration(
+            behavior:
+                ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            child: Column(
+        
+          
           children: <Widget>[
-            SizedBox(
-              height: 20,
-            ),
+           
             Container(
-                margin: EdgeInsets.only(left: 15),
+                margin: EdgeInsets.all(10),
                 height: 40,
                 child: TextField(
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search),
-                    hintText: 'Judul Buku / Abstrak',
+                    hintText: 'Judul Buku',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.grey)),
+                        borderSide: BorderSide(color: Colors.white)),
                   ),
 
                   controller: InputController,
@@ -90,34 +92,35 @@ class _Riwayat extends State<RiwayatPage> {
                     print(InputController);
                   },
                 )),
-            Container(
-              height: 700,
-              child: ListView.builder(
-                controller: _scrollController,
-                shrinkWrap: true,
-                padding: EdgeInsets.all(10),
-                itemCount: listRiwayat.length + 1,
-                itemBuilder: (context, int index) {
-                  if (index == listRiwayat.length) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Center(
-                          child: hasMore
-                              ? const CircularProgressIndicator()
-                              : const Text('data habis')),
-                    );
-                  } else {
-                    return RiwayatCard(iniRiwayat: listRiwayat[index]);
-                  }
-                },
+            Expanded(
+              child: Container(
+                height: 700,
+                child: ListView.builder(
+                  controller: _scrollController,
+                  shrinkWrap: true,
+                  padding: EdgeInsets.all(10),
+                  itemCount: listRiwayat.length + 1,
+                  itemBuilder: (context, int index) {
+                    if (index == listRiwayat.length) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        child: Center(
+                            child: hasMore
+                                ? const CircularProgressIndicator()
+                                : const Text('data habis')),
+                      );
+                    } else {
+                      return RiwayatCard(iniRiwayat: listRiwayat[index]);
+                    }
+                  },
+                ),
               ),
             ),
-            SizedBox(
-              height: 25,
-            ),
+            
+            
           ],
         ),
       ),
-    );
+    ));
   }
 }

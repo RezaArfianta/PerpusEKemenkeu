@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
       ),
       home: const Lobby(),
     );
@@ -50,6 +52,7 @@ class _LobbyState extends State<Lobby> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
           onTap: onTappedBar,

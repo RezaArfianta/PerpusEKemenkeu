@@ -42,7 +42,7 @@ class _Beranda extends State<Beranda> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Beranda'),
+        title: Text('Perpustakaan'),
       ),
       body: loading
           ? Center(
@@ -50,75 +50,69 @@ class _Beranda extends State<Beranda> {
             )
           : listTerbaru != null
               ? Container(
-                  child: ListView(children: <Widget>[
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 15),
-                      height: 40,
-                      child: Text(
-                        'Buku Terbaru',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.left,
+                  child: ScrollConfiguration(
+                    behavior: ScrollConfiguration.of(context)
+                        .copyWith(scrollbars: false),
+                    child: ListView(children: <Widget>[
+                      SizedBox(
+                        height: 25,
                       ),
-                    ),
-                    Container(
-                      height: 320,
-                      child: ListView.separated(
-                        padding: EdgeInsets.all(10),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: listTerbaru!.length,
-                        separatorBuilder: (context, _) => SizedBox(
-                          width: 12,
+                      Container(
+                        margin: EdgeInsets.only(left: 15),
+                        height: 40,
+                        child: Text(
+                          'Buku Terbaru',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.left,
                         ),
-                        itemBuilder: (context, int index) {
-                          return InkWell(
-                            child: CardBuku(buku: listTerbaru![index]),
-                            onTap: () {
-                              print('data ada');
-                            },
-                          );
-                        },
                       ),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 15),
-                      height: 40,
-                      child: Text(
-                        'Buku Terlaris',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Container(
-                      height: 320,
-                      child: ListView.separated(
-                        padding: EdgeInsets.all(10),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: listTerlaris!.length,
-                        separatorBuilder: (context, _) => SizedBox(
-                          width: 12,
+                      Container(
+                        height: 320,
+                        child: ListView.separated(
+                          padding: EdgeInsets.all(10),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: listTerbaru!.length,
+                          separatorBuilder: (context, _) => SizedBox(
+                            width: 12,
+                          ),
+                          itemBuilder: (context, int index) {
+                            return CardBuku(buku: listTerbaru![index]);
+                          },
                         ),
-                        itemBuilder: (context, int index) {
-                          return InkWell(
-                            child: CardBuku(buku: listTerlaris![index]),
-                            onTap: () {
-                              print('data ada');
-                            },
-                          );
-                        },
                       ),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                  ]),
+                      SizedBox(
+                        height: 25,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 15),
+                        height: 40,
+                        child: Text(
+                          'Buku Terlaris',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                      Container(
+                        height: 320,
+                        child: ListView.separated(
+                          padding: EdgeInsets.all(10),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: listTerlaris!.length,
+                          separatorBuilder: (context, _) => SizedBox(
+                            width: 12,
+                          ),
+                          itemBuilder: (context, int index) {
+                            return CardBuku(buku: listTerlaris![index]);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 25,
+                      ),
+                    ]),
+                  ),
                 )
               : Center(
                   child: Text('no data'),

@@ -41,7 +41,19 @@ class RiwayatCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          '${iniRiwayat?.lokasi}',
+                          '${iniRiwayat?.namaPengarang}',
+                          style: TextStyle(fontSize: 15),
+                          textAlign: TextAlign.start,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '${iniRiwayat?.tanggalPinjam}, ${iniRiwayat?.tanggalKembali} ',
                           style: TextStyle(fontSize: 15),
                           textAlign: TextAlign.start,
                           overflow: TextOverflow.ellipsis,
@@ -58,16 +70,12 @@ class RiwayatCard extends StatelessWidget {
                       size: 20,
                       color: Colors.grey,
                     ),
-                    Expanded(child: Text('${iniRiwayat?.namaPenerbit}')),
+                    Expanded(child: Text('${iniRiwayat?.lokasi}')),
                   ]),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Icon(
-                        Icons.info,
-                        size: 20,
-                        color: Colors.grey,
-                    ),
+                    
                   ],
                 )
               ],
