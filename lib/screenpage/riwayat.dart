@@ -65,14 +65,16 @@ class _Riwayat extends State<RiwayatPage> {
         title: Text('Perpustakaan'),
       ),
       body: Container(
-        child: Column(
+        child: ScrollConfiguration(
+            behavior:
+                ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            child: Column(
+        
           
           children: <Widget>[
-            SizedBox(
-              height: 20,
-            ),
+           
             Container(
-                margin: EdgeInsets.only(left: 10),
+                margin: EdgeInsets.all(10),
                 height: 40,
                 child: TextField(
                   decoration: InputDecoration(
@@ -80,7 +82,7 @@ class _Riwayat extends State<RiwayatPage> {
                     hintText: 'Judul Buku',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.grey)),
+                        borderSide: BorderSide(color: Colors.white)),
                   ),
 
                   controller: InputController,
@@ -117,6 +119,6 @@ class _Riwayat extends State<RiwayatPage> {
           ],
         ),
       ),
-    );
+    ));
   }
 }
