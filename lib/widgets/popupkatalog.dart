@@ -100,7 +100,9 @@ class _PopupKatalogState extends State<PopupKatalog> {
                     SizedBox(
                       height: 30,
                     ),
-                    Text('${detail?.data?.abstrak}'),
+                    Text(detail?.data?.abstrak != null
+                        ? '${detail?.data?.abstrak}'
+                        : ''),
                     SizedBox(
                       height: 20,
                     ),

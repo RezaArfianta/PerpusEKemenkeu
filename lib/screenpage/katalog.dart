@@ -103,9 +103,7 @@ class _Katalog extends State<Katalog> {
                                   padding: EdgeInsets.symmetric(vertical: 20),
                                   child: Center(
                                       child: hasMore
-                                          ? Center(
-                                              child:
-                                                  const CircularProgressIndicator())
+                                          ? const CircularProgressIndicator()
                                           : const Text('data habis')),
                                 );
                               } else {
