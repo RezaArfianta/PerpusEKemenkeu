@@ -23,22 +23,21 @@ class RiwayatCard extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                    child: Column(
+                    child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    Expanded(
+                      child: Text(
                       '${iniRiwayat?.judulBuku}',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                      textAlign: TextAlign.start,
-                    ),
-                    Text(
-                      '${iniRiwayat?.lokasi}',
-                      style: TextStyle(fontSize: 15),
-                      textAlign: TextAlign.start,
-                    ),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 15),
+                          textAlign: TextAlign.start,
+                          overflow: TextOverflow.ellipsis,
+                      ),
                   ],
-                )),
+                      )),
+                  
+                
                 Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Icon(
                     Icons.location_on,
@@ -57,7 +56,7 @@ class RiwayatCard extends StatelessWidget {
                     ),
                   ],
                 )
-              ],
+              
             )),
       ),
     );
