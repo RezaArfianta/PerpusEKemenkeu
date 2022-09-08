@@ -58,6 +58,7 @@ class _Katalog extends State<Katalog> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text('Perpustakaan'),
         ),
@@ -85,33 +86,35 @@ class _Katalog extends State<Katalog> {
                         print(InputController);
                       },
                     )),
-                Container(
-                    height: 686,
-                    child: ScrollConfiguration(
-                      behavior: ScrollConfiguration.of(context)
-                          .copyWith(scrollbars: false),
-                      child: ListView.builder(
-                          controller: _scrollController,
-                          shrinkWrap: true,
-                          padding: EdgeInsets.all(10),
-                          itemCount: listKatalog.length + 1,
-                          itemBuilder: (context, int index) {
-                            if (index == listKatalog.length) {
-                              return Padding(
-                                padding: EdgeInsets.symmetric(vertical: 20),
-                                child: Center(
-                                    child: hasMore
-                                        ? Center(
-                                            child:
-                                                const CircularProgressIndicator())
-                                        : const Text('data habis')),
-                              );
-                            } else {
-                              return KatalogCard(
-                                  iniKatalog: listKatalog[index]);
-                            }
-                          }),
-                    )),
+                Expanded(
+                  child: Container(
+                      height: 700,
+                      child: ScrollConfiguration(
+                        behavior: ScrollConfiguration.of(context)
+                            .copyWith(scrollbars: false),
+                        child: ListView.builder(
+                            controller: _scrollController,
+                            shrinkWrap: true,
+                            padding: EdgeInsets.all(10),
+                            itemCount: listKatalog.length + 1,
+                            itemBuilder: (context, int index) {
+                              if (index == listKatalog.length) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 20),
+                                  child: Center(
+                                      child: hasMore
+                                          ? Center(
+                                              child:
+                                                  const CircularProgressIndicator())
+                                          : const Text('data habis')),
+                                );
+                              } else {
+                                return KatalogCard(
+                                    iniKatalog: listKatalog[index]);
+                              }
+                            }),
+                      )),
+                ),
               ],
             ),
           ),
