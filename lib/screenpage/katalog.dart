@@ -69,7 +69,7 @@ class _Katalog extends State<Katalog> {
             child: Column(
               children: <Widget>[
                 Container(
-                    margin: EdgeInsets.all(10),
+                    margin: EdgeInsets.all(15),
                     height: 40,
                     child: TextField(
                       decoration: InputDecoration(
@@ -95,7 +95,7 @@ class _Katalog extends State<Katalog> {
                         child: ListView.builder(
                             controller: _scrollController,
                             shrinkWrap: true,
-                            padding: EdgeInsets.all(10),
+                            padding: EdgeInsets.only(left: 10, right: 10),
                             itemCount: listKatalog.length + 1,
                             itemBuilder: (context, int index) {
                               if (index == listKatalog.length) {

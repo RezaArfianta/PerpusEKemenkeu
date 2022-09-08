@@ -17,9 +17,21 @@ class KatalogCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.fromLTRB(14, 4, 14, 4),
         child: Card(
-          elevation: 16,
+          elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(3, 3),
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                    color: Colors.grey.withOpacity(0.5),
+                  ),
+                ],
+              ),
               width: 200,
               padding: const EdgeInsets.all(20),
               child: Column(
