@@ -65,19 +65,19 @@ class _Riwayat extends State<RiwayatPage> {
         title: Text('Perpustakaan'),
       ),
       body: Container(
-        child: ListView(
-          shrinkWrap: false,
+        child: Column(
+          
           children: <Widget>[
             SizedBox(
               height: 20,
             ),
             Container(
-                margin: EdgeInsets.only(left: 15),
+                margin: EdgeInsets.only(left: 10),
                 height: 40,
                 child: TextField(
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search),
-                    hintText: 'Judul Buku / Abstrak',
+                    hintText: 'Judul Buku',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.grey)),
@@ -91,7 +91,7 @@ class _Riwayat extends State<RiwayatPage> {
                   },
                 )),
             Container(
-              height: 700,
+              height: 483,
               child: ListView.builder(
                 controller: _scrollController,
                 shrinkWrap: true,
@@ -112,9 +112,8 @@ class _Riwayat extends State<RiwayatPage> {
                 },
               ),
             ),
-            SizedBox(
-              height: 25,
-            ),
+            
+            
           ],
         ),
       ),

@@ -63,11 +63,7 @@ class RiwayatCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Icon(
-                        Icons.info,
-                        size: 20,
-                        color: Colors.grey,
-                    ),
+                    
                   ],
                 )
               ],
