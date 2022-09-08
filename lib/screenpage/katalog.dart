@@ -65,8 +65,7 @@ class _Katalog extends State<Katalog> {
           child: ScrollConfiguration(
             behavior:
                 ScrollConfiguration.of(context).copyWith(scrollbars: false),
-            child: ListView(
-              shrinkWrap: true,
+            child: Column(
               children: <Widget>[
                 Container(
                     margin: EdgeInsets.all(10),
@@ -87,7 +86,7 @@ class _Katalog extends State<Katalog> {
                       },
                     )),
                 Container(
-                    height: 700,
+                    height: 686,
                     child: ScrollConfiguration(
                       behavior: ScrollConfiguration.of(context)
                           .copyWith(scrollbars: false),
