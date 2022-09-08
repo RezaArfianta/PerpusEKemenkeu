@@ -92,26 +92,28 @@ class _Riwayat extends State<RiwayatPage> {
                     print(InputController);
                   },
                 )),
-            Container(
-              height: 483,
-              child: ListView.builder(
-                controller: _scrollController,
-                shrinkWrap: true,
-                padding: EdgeInsets.all(10),
-                itemCount: listRiwayat.length + 1,
-                itemBuilder: (context, int index) {
-                  if (index == listRiwayat.length) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Center(
-                          child: hasMore
-                              ? const CircularProgressIndicator()
-                              : const Text('data habis')),
-                    );
-                  } else {
-                    return RiwayatCard(iniRiwayat: listRiwayat[index]);
-                  }
-                },
+            Expanded(
+              child: Container(
+                height: 700,
+                child: ListView.builder(
+                  controller: _scrollController,
+                  shrinkWrap: true,
+                  padding: EdgeInsets.all(10),
+                  itemCount: listRiwayat.length + 1,
+                  itemBuilder: (context, int index) {
+                    if (index == listRiwayat.length) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        child: Center(
+                            child: hasMore
+                                ? const CircularProgressIndicator()
+                                : const Text('data habis')),
+                      );
+                    } else {
+                      return RiwayatCard(iniRiwayat: listRiwayat[index]);
+                    }
+                  },
+                ),
               ),
             ),
             
