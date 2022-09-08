@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
       ),
       home: const Lobby(),
     );
