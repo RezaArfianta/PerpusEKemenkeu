@@ -24,7 +24,7 @@ class KatalogCard extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                      child: Column(
+                      child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
