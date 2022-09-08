@@ -23,37 +23,50 @@ class RiwayatCard extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${iniRiwayat?.judulBuku}',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                      textAlign: TextAlign.start,
-                    ),
-                    Text(
-                      '${iniRiwayat?.lokasi}',
-                      style: TextStyle(fontSize: 15),
-                      textAlign: TextAlign.start,
-                    ),
-                  ],
-                )),
-                Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Icon(
-                    Icons.location_on,
-                    size: 20,
-                    color: Colors.grey,
+                    child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '${iniRiwayat?.judulBuku}',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                          textAlign: TextAlign.start,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  )),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '${iniRiwayat?.lokasi}',
+                          style: TextStyle(fontSize: 15),
+                          textAlign: TextAlign.start,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
                   ),
-                  Expanded(child: Text('${iniRiwayat?.namaPenerbit}')),
-                ]),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Icon(
-                      Icons.info,
+                      Icons.location_on,
                       size: 20,
                       color: Colors.grey,
+                    ),
+                    Expanded(child: Text('${iniRiwayat?.namaPenerbit}')),
+                  ]),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Icon(
+                        Icons.info,
+                        size: 20,
+                        color: Colors.grey,
                     ),
                   ],
                 )

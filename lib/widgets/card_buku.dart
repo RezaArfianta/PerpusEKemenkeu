@@ -9,6 +9,7 @@ class CardBuku extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       splashFactory: NoSplash.splashFactory,
+      hoverColor: Colors.transparent,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -70,127 +71,143 @@ class CardBuku extends StatelessWidget {
               decoration: BoxDecoration(color: Colors.white),
               height: 450,
               width: 200,
-              child: ListView(
-                children: <Widget>[
-                  Container(
-                    height: 50,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+              child: ScrollConfiguration(
+                behavior:
+                    ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                child: ListView(
+                  children: <Widget>[
+                    Container(
+                      height: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                              hoverColor: Colors.transparent,
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: Icon(Icons.close))
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: 30, left: 30, bottom: 20),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10)),
+                        child: Image(
+                          image: NetworkImage(
+                            'https://perpustakaan.kemenkeu.go.id/img/FileCover/${buku?.fileCover}',
+                          ),
+                          // width: 100,
+                          // height: 250,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      '${buku?.judulBuku}',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+                    ),
+                    SizedBox(
+                      height: 7,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
                       children: [
-                        IconButton(
-                            hoverColor: Colors.transparent,
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: Icon(Icons.close))
+                        Expanded(
+                          child: Text('Penulis'),
+                          flex: 3,
+                        ),
+                        Spacer(
+                          flex: 1,
+                        ),
+                        Text(':'),
+                        Expanded(
+                          child: Text('${buku?.namaPengarang}'),
+                          flex: 4,
+                        )
                       ],
                     ),
-                  ),
-                  Image(
-                    image: NetworkImage(
-                      'https://perpustakaan.kemenkeu.go.id/img/FileCover/${buku?.fileCover}',
+                    SizedBox(
+                      height: 5,
                     ),
-                    width: 100,
-                    height: 250,
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    '${buku?.judulBuku}',
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
-                  ),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: [
-                      Expanded(
-                        child: Text('Penulis'),
-                        flex: 3,
-                      ),
-                      Spacer(
-                        flex: 1,
-                      ),
-                      Text(':'),
-                      Expanded(
-                        child: Text('${buku?.namaPengarang}'),
-                        flex: 4,
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: [
-                      Expanded(
-                        child: Text('Penerbit'),
-                        flex: 3,
-                      ),
-                      Spacer(
-                        flex: 1,
-                      ),
-                      Text(':'),
-                      Expanded(
-                        child: Text('${buku?.namaPenerbit}'),
-                        flex: 4,
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: [
-                      Expanded(
-                        child: Text('Lokasi Rak'),
-                        flex: 3,
-                      ),
-                      Spacer(
-                        flex: 1,
-                      ),
-                      Text(':'),
-                      Expanded(
-                        child: Text('${buku?.lokasiRak}'),
-                        flex: 4,
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: [
-                      Expanded(
-                        child: Text('Lokasi Perpustakaan'),
-                        flex: 3,
-                      ),
-                      Spacer(
-                        flex: 1,
-                      ),
-                      Text(':'),
-                      Expanded(
-                        child: Text('${buku?.lokasi}'),
-                        flex: 4,
-                      )
-                    ],
-                  ),
-                ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Expanded(
+                          child: Text('Penerbit'),
+                          flex: 3,
+                        ),
+                        Spacer(
+                          flex: 1,
+                        ),
+                        Text(':'),
+                        Expanded(
+                          child: Text('${buku?.namaPenerbit}'),
+                          flex: 4,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Expanded(
+                          child: Text('Lokasi Rak'),
+                          flex: 3,
+                        ),
+                        Spacer(
+                          flex: 1,
+                        ),
+                        Text(':'),
+                        Expanded(
+                          child: Text('${buku?.lokasiRak}'),
+                          flex: 4,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Expanded(
+                          child: Text('Lokasi Perpustakaan'),
+                          flex: 3,
+                        ),
+                        Spacer(
+                          flex: 1,
+                        ),
+                        Text(':'),
+                        Expanded(
+                          child: Text('${buku?.lokasi}'),
+                          flex: 4,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

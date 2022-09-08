@@ -42,7 +42,7 @@ class _Beranda extends State<Beranda> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Beranda'),
+        title: Text('Perpustakaan'),
       ),
       body: loading
           ? Center(
@@ -74,12 +74,7 @@ class _Beranda extends State<Beranda> {
                           width: 12,
                         ),
                         itemBuilder: (context, int index) {
-                          return InkWell(
-                            child: CardBuku(buku: listTerbaru![index]),
-                            onTap: () {
-                              print('data ada');
-                            },
-                          );
+                          return CardBuku(buku: listTerbaru![index]);
                         },
                       ),
                     ),
@@ -106,12 +101,7 @@ class _Beranda extends State<Beranda> {
                           width: 12,
                         ),
                         itemBuilder: (context, int index) {
-                          return InkWell(
-                            child: CardBuku(buku: listTerlaris![index]),
-                            onTap: () {
-                              print('data ada');
-                            },
-                          );
+                          return CardBuku(buku: listTerlaris![index]);
                         },
                       ),
                     ),
