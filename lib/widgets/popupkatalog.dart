@@ -42,7 +42,7 @@ class _PopupKatalogState extends State<PopupKatalog> {
               width: 200,
               child: Center(child: CircularProgressIndicator()))
           : Container(
-              margin: EdgeInsets.all(8),
+              margin: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
               decoration: BoxDecoration(color: Colors.white),
               height: 450,
               width: 200,
@@ -100,9 +100,12 @@ class _PopupKatalogState extends State<PopupKatalog> {
                     SizedBox(
                       height: 30,
                     ),
-                    Text(detail?.data?.abstrak != null
-                        ? '${detail?.data?.abstrak}'
-                        : ''),
+                    Text(
+                        detail?.data?.abstrak != null
+                            ? '${detail?.data?.abstrak}'
+                            : '',
+                        style: TextStyle(),
+                        textAlign: TextAlign.justify),
                     SizedBox(
                       height: 20,
                     ),
@@ -240,9 +243,6 @@ class _PopupKatalogState extends State<PopupKatalog> {
                           flex: 4,
                         )
                       ],
-                    ),
-                    SizedBox(
-                      height: 10,
                     ),
                   ],
                 ),

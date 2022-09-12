@@ -19,6 +19,7 @@ class _Katalog extends State<Katalog> {
   List<Catalogue?> listKatalog = [];
   KatalogResponse? inikatalog;
   int page = 1;
+  String keyword = '';
   bool loading = false;
   bool hasMore = true;
   final TextEditingController InputController = TextEditingController();
@@ -31,8 +32,9 @@ class _Katalog extends State<Katalog> {
     _scrollController.addListener(() {
       if (_scrollController.position.maxScrollExtent ==
           _scrollController.offset) {
+        page = page + 1;
         print('ok $page ${listKatalog.length}');
-        fetch(page++, '');
+        fetch(page, keyword);
       }
     });
   }
@@ -44,9 +46,7 @@ class _Katalog extends State<Katalog> {
     inikatalog = await Services.getListCatalogue(page, keyword);
     if (inikatalog != null) {
       listKatalog.addAll(inikatalog!.data!);
-      inikatalog!.data!.forEach((element) {
-        print("isi katalog ${element.judulbuku}");
-      });
+      inikatalog!.data!.forEach((element) {});
       hasMore = page * 10 <= inikatalog!.total!;
     }
     setState(() {
@@ -69,49 +69,51 @@ class _Katalog extends State<Katalog> {
             child: Column(
               children: <Widget>[
                 Container(
-                    margin: EdgeInsets.all(15),
-                    height: 40,
+                    margin: EdgeInsets.only(
+                        bottom: 15, left: 15, right: 15, top: 15),
+                    height: 50,
                     child: TextField(
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.search),
                         hintText: 'Judul Buku / Abstrak',
+                        hintStyle: TextStyle(fontSize: 15),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(30),
                             borderSide: BorderSide(color: Colors.white)),
                       ),
                       controller: InputController,
                       onSubmitted: (text) {
                         listKatalog.clear();
+                        page = 1;
                         fetch(page, text);
+                        keyword = text;
                         print(InputController);
                       },
                     )),
                 Expanded(
                   child: Container(
-                      height: 700,
                       child: ScrollConfiguration(
-                        behavior: ScrollConfiguration.of(context)
-                            .copyWith(scrollbars: false),
-                        child: ListView.builder(
-                            controller: _scrollController,
-                            shrinkWrap: true,
-                            padding: EdgeInsets.only(left: 10, right: 10),
-                            itemCount: listKatalog.length + 1,
-                            itemBuilder: (context, int index) {
-                              if (index == listKatalog.length) {
-                                return Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 20),
-                                  child: Center(
-                                      child: hasMore
-                                          ? const CircularProgressIndicator()
-                                          : const Text('data habis')),
-                                );
-                              } else {
-                                return KatalogCard(
-                                    iniKatalog: listKatalog[index]);
-                              }
-                            }),
-                      )),
+                    behavior: ScrollConfiguration.of(context)
+                        .copyWith(scrollbars: false),
+                    child: ListView.builder(
+                        controller: _scrollController,
+                        shrinkWrap: true,
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        itemCount: listKatalog.length + 1,
+                        itemBuilder: (context, int index) {
+                          if (index == listKatalog.length) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(vertical: 20),
+                              child: Center(
+                                  child: hasMore
+                                      ? const CircularProgressIndicator()
+                                      : const Text('data habis')),
+                            );
+                          } else {
+                            return KatalogCard(iniKatalog: listKatalog[index]);
+                          }
+                        }),
+                  )),
                 ),
               ],
             ),
