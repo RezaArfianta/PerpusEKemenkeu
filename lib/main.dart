@@ -62,7 +62,7 @@ class _LobbyState extends State<Lobby> {
               icon: Icon(Icons.home),
               label: 'Beranda',
             ),
-            BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Catalog'),
+            BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Katalog'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.lock_clock), label: 'Riwayat')
           ]),

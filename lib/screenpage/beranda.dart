@@ -76,9 +76,8 @@ class _Beranda extends State<Beranda> {
                           separatorBuilder: (context, _) => SizedBox(
                             width: 12,
                           ),
-                          itemBuilder: (context, int index) {
-                            return CardBuku(buku: listTerbaru![index]);
-                          },
+                          itemBuilder: (context, int index) =>
+                              CardBuku(buku: listTerbaru![index]),
                         ),
                       ),
                       SizedBox(

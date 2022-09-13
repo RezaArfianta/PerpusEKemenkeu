@@ -33,7 +33,8 @@ class KatalogCard extends StatelessWidget {
                 ],
               ),
               width: 200,
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(
+                  left: 20, right: 20, top: 20, bottom: 5),
               child: Column(
                 children: [
                   Container(

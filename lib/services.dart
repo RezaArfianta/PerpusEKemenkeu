@@ -45,6 +45,8 @@ abstract class Services {
   static Future<KatalogResponse?> getListCatalogue(
       int page, String keyword) async {
     try {
+      print(
+          'https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/GetAll?PageSize=10&Page=$page&keyword=$keyword');
       Response response = await Dio().get(
           'https://demo-service.kemenkeu.go.id/perpustakaan/Koleksi/GetAll?PageSize=10&Page=$page&keyword=$keyword');
       print('data katalog');
