@@ -20,6 +20,7 @@ class _Riwayat extends State<RiwayatPage> {
   List<History?> listRiwayat = [];
   RiwayatResponse? iniriwayat;
   int page = 1;
+  String keyword = '';
   bool loading = false;
   bool hasMore = true;
   final TextEditingController InputController = TextEditingController();
@@ -32,6 +33,7 @@ class _Riwayat extends State<RiwayatPage> {
     _scrollController.addListener(() {
       if (_scrollController.position.maxScrollExtent ==
           _scrollController.offset) {
+            page = page + 1;
         print('ok $page ${listRiwayat.length}');
         fetch(page, '');
       }
@@ -85,7 +87,9 @@ class _Riwayat extends State<RiwayatPage> {
                       controller: InputController,
                       onSubmitted: (text) {
                         listRiwayat.clear();
+                        page = 1;
                         fetch(page, text);
+                        keyword = text;
                         print(InputController);
                       },
                     )),
